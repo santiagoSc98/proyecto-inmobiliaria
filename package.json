@@ -1,0 +1,24 @@
+{
+  "name": "proyecto-inmobiliaria",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongodb": "^4.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/santiagoSc98/proyecto-inmobiliaria.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/santiagoSc98/proyecto-inmobiliaria/issues"
+  },
+  "homepage": "https://github.com/santiagoSc98/proyecto-inmobiliaria#readme"
+}
