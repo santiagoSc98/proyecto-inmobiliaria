@@ -10,7 +10,7 @@
     </head>
     <body>
         <h1>Register</h1>
-        <form action="/login" method="post">
+        <form action="/register" method="post">
             <label for="nombre">nombre:</label><br>
             <input type="text" name="nombre"><br>
 
@@ -28,6 +28,11 @@
 
             <label for="pass">pass:</label><br>
             <input type="password" name="pass" ><br><br>
+
+            <select name="tipoEnte">
+                <option value="1">Cliente</option>
+                <option value="2">Agencia</option>
+            </select>
             
             <input type="submit" value="Submit">
           </form> 
