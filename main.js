@@ -4,15 +4,9 @@ const app = express()
 let PORT = process.env.PORT || 3000;
 const CryptoJS = require("crypto-js");
 
-
-// const http = require("http").createServer(app)
-
 app.use(bodyParser.urlencoded({extended:true}));
 
 var mysql = require('mysql');
-// const { DATETIME } = require("mysql/lib/protocol/constants/types");
-// const session = require("express-session");
-// const { connect } = require("http2");
 
 var con = mysql.createConnection({
   host: "127.0.0.1",
@@ -34,14 +28,7 @@ function consult(){
       });
 }
 
-//  app.get('/', function (req, res) {
-    
-//     res.send("consulta realizada /")
-// })
-
 app.post('/register', function (req, res) {
-
-    var token = CryptoJS.MD5(email + Date.now()).toString();
 
     let tipo =  req.body.tipo;
     let nombre =  req.body.nombre;
@@ -52,14 +39,27 @@ app.post('/register', function (req, res) {
     let dni = req.body.dni;
     let pass = req.body.pass;
 
-    con.query("INSERT INTO ente (id_tipoente,nombre,telefono,descripcion,direccion,email,documentoidentificador,pass,token) VALUES ('"+ tipo +"','"+ nombre +"','"+ telefono +"','"+ descripcion +"','"+ direccion +"','"+ email +"','"+ dni +"','"+ pass +"','"+ token +"') ;", function(err, result) {
-      if(err!= null){
-        console.log("error en base",err)
-      } else{
-        console.log("actualizado correctamente",token)
+    var token = CryptoJS.MD5(email + Date.now()).toString();
+
+  	con.query('SELECT email FROM ente WHERE email = ? ', [email], function(err, result0) {
+      
+      if(err == null){
+        if(result0.length > 0){
+          // Existe un usario con email igual
+          res.send([{"status":0,"mensaje":"Usuario ya existe"}]);
+
+        } else{
+          con.query("INSERT INTO ente (id_tipoente,nombre,telefono,descripcion,direccion,email,documentoidentificador,pass,token) VALUES ('"+ tipo +"','"+ nombre +"',0,'','','"+ email +"','','"+ pass +"','"+ token +"') ;", function(err, result1) {
+            if(err!= null){
+              console.log("error en base",err)
+            } else{
+              console.log("actualizado correctamente",token)
+            }
+          });
+          res.send([{"status":200,"token":token}]);
+        }
       }
     });
-    res.send([{"status":200,"token":token}]);
 })
 
 var sessionLog = []
@@ -135,7 +135,7 @@ app.use(express.static(__dirname + '/html'))
 
 app.get('/home', function(req, res){
     // console.log("holsaas home")
-    res.sendFile(__dirname+'/html/index.html')
+    res.sendFile(__dirname+'/html/indexx.html')
 })
 
 app.get('/insert', function(req, res)  {

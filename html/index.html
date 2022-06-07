@@ -113,16 +113,33 @@
 
                 } 
             }});
+
         }
     });
 
     $("#register").submit(function(e) {
-        localStorage.setItem("token",data[0].token);
-        $("#modlogreg").hide();
-        $("#listado").show();
+     
+            $.ajax({
+            type: "POST",
+            url: actionUrl,
+            data: form.serialize(), 
+            success: function(data)
+            {
+                if(data[0].status == 200){
+
+                    localStorage.setItem("token",data[0].token);
+                    $("#modlogreg").hide();
+                    $("#listado").show();
+
+                } else {
+                    console.log(" existe un usuario con ese email ");
+                }
+               
+            }});
     })
 
-    $(document).ready(function(e) {
+    $(document).ready(function(e) { 
+        // AutoLogin
         if(localStorage.getItem("token")!=null){
             $.ajax({
                 type: "POST",
