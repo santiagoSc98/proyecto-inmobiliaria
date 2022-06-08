@@ -2,10 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser")
 const app = express()
 let PORT = process.env.PORT || 3000;
-
-const http = require("http").createServer(app)
-app.use(bodyParser.urlencoded({ extended: true }));
+const CryptoJS = require("crypto-js");
 app.use(express.static(__dirname + '/html'))
+app.use(bodyParser.urlencoded({extended:true}));
+
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
@@ -39,51 +39,102 @@ app.post('/register', function (req, res) {
     let dni = req.body.dni;
     let pass = req.body.pass;
 
-    con.query("INSERT INTO ente (id_tipoente,nombre,telefono,descripcion,direccion,email,documentoidentificador,pass) VALUES ('" + tipo + "','" + nombre + "','" + telefono + "','" + descripcion + "','" + direccion + "','" + email + "','" + dni + "','" + pass + "') ;", function (err, result) {
-        if (err) throw err;
-        console.log("Result: ", result);
-    });
+    var token = CryptoJS.MD5(email + Date.now()).toString();
 
-    res.send("register correcto")
+  	con.query('SELECT email FROM ente WHERE email = ? ', [email], function(err, result0) {
+      
+      if(err == null){
+        if(result0.length > 0){
+          // Existe un usario con email igual
+          res.send([{"status":0,"mensaje":"Usuario ya existe"}]);
+
+        } else{
+          con.query("INSERT INTO ente (id_tipoente,nombre,telefono,descripcion,direccion,email,documentoidentificador,pass,token) VALUES ('"+ tipo +"','"+ nombre +"',0,'','','"+ email +"','','"+ pass +"','"+ token +"') ;", function(err, result1) {
+            if(err!= null){
+              console.log("error en base",err)
+            } else{
+              console.log("actualizado correctamente",token)
+            }
+          });
+          res.send([{"status":200,"token":token}]);
+        }
+      }
+    });
 })
 
 var sessionLog = []
 
-app.post('/login', function (req, res) {
+app.post('/login', function(req, res) {
 
-    let email = req.body.email;
-    let pass = req.body.pass;
+	let email = req.body.email;
+	let pass = req.body.pass;
 
-    if (email && pass) {
+	if (email && pass) {
+	
+		con.query('SELECT * FROM ente WHERE email = ? AND pass = ?', [email, pass], function(err, result) {
+			
+			if (err) throw err;
 
-        con.query('SELECT * FROM ente WHERE email = ? AND pass = ?', [email, pass], function (err, result) {
+			if (result.length > 0) {
 
-            if (err) throw err;
+        var token = CryptoJS.MD5(email + Date.now()).toString();
 
-            if (result.length > 0) {
-                sessionLog["id" + result[0].id_ente] = {}
-                sessionLog["id" + result[0].id_ente].logged = true
-                console.log("sesion", sessionLog);
-                res.send("login correcto");
-            } else {
-                res.send('Email o contraseña incorrecta!');
-            }
-            res.end();
-        });
+        con.query('UPDATE ente SET token = ? WHERE id_ente = ?', [token, result[0].id_ente], function(err, result) {
 
-    } else {
-        res.send('Rellene los campoos!');
-        res.end();
-    }
+          if(err!= null){
+            console.log("error en base",err)
+          }else{
+            console.log("actualizado correctamente",token)
+          }
+        })
+			
+        sessionLog["id"+token] = {}
+        sessionLog["id"+token].logged = true
+
+        console.log ("sesion",sessionLog)
+
+        res.send([{"status":200,"token":token}]);
+
+			} else {
+				res.send([{"status":0}]);
+			}			
+			res.end();
+		});
+	} else {
+		res.send([{"status":0,"mensaje":"Rellene los campos"}]);
+		res.end();
+	}
 });
 
+app.post('/listado', function(req,res){
 
+  let token = req.body.token;
 
-app.use(express.static(__dirname + '/html'))
+  if(sessionLog["id" + token]!= null){
+    res.send("logeado");
+
+  } else {
+    con.query("SELECT * FROM ente WHERE token = ?;", [token],function(err,result){
+      if(result.length > 0){
+
+        sessionLog["id"+token] = {}
+        sessionLog["id"+token].logged = true
+
+        console.log ("sesion",sessionLog)
+
+        res.send("logeado")
+
+      } else {
+        res.send("no logeado");
+      }
+    })
+  }
+})
+
 
 app.get('/home', function (req, res) {
     // console.log("holsaas home")
-    res.sendFile(__dirname + '/html/index.html')
+    res.sendFile(__dirname+'/html/indexx.html')
 })
 
 app.get('/home', function (req, res) {
