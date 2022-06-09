@@ -4,7 +4,8 @@ const app = express()
 let PORT = process.env.PORT || 3000;
 const CryptoJS = require("crypto-js");
 const fs = require('fs');
-
+app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/html"))
 app.use(bodyParser.urlencoded({extended:true}));
 
 var mysql = require('mysql');
@@ -164,35 +165,8 @@ app.get('/add',function(req,res){
 app.post('/newpropiedad',function(req,res){
 })
 
-app.get('/home', function(req, res){
-
-  var htmlresp = ""
-
-  fs.readFile(__dirname+'/html/header.html', 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    htmlresp = data
-
-    fs.readFile(__dirname+'/html/indexx.html', 'utf8', (err, data) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
-     htmlresp = htmlresp + data
-       
-    res.writeHead(200,{'Content-Type':'text/html'})
-
-    res.end(htmlresp)
-    });
-
-  });
-
-})
-
-app.get('/home', function (req, res) {
-    res.sendFile(__dirname + '/html/index.html')
+app.get("/home", function(req, res){
+  res.render(__dirname+"/html/views/index")
 })
 
 app.listen(PORT, function () {
