@@ -3,7 +3,8 @@ const bodyParser = require("body-parser")
 const app = express()
 let PORT = process.env.PORT || 3000;
 const CryptoJS = require("crypto-js");
-app.use(express.static(__dirname + '/html'))
+const fs = require('fs');
+
 app.use(bodyParser.urlencoded({extended:true}));
 
 var mysql = require('mysql');
@@ -41,7 +42,7 @@ app.post('/register', function (req, res) {
 
     var token = CryptoJS.MD5(email + Date.now()).toString();
 
-  	con.query('SELECT email FROM ente WHERE email = ? ', [email], function(err, result0) {
+  	con.query('SELECT email FROM usuario WHERE email = ? ', [email], function(err, result0) {
       
       if(err == null){
         if(result0.length > 0){
@@ -49,7 +50,7 @@ app.post('/register', function (req, res) {
           res.send([{"status":0,"mensaje":"Usuario ya existe"}]);
 
         } else{
-          con.query("INSERT INTO ente (id_tipoente,nombre,telefono,descripcion,direccion,email,documentoidentificador,pass,token) VALUES ('"+ tipo +"','"+ nombre +"',0,'','','"+ email +"','','"+ pass +"','"+ token +"') ;", function(err, result1) {
+          con.query("INSERT INTO usuario (id_tipousuario,nombre,telefono,descripcion,direccion,email,documentoidentificador,pass,token) VALUES ('"+ tipo +"','"+ nombre +"',0,'','','"+ email +"','','"+ pass +"','"+ token +"') ;", function(err, result1) {
             if(err!= null){
               console.log("error en base",err)
             } else{
@@ -61,8 +62,8 @@ app.post('/register', function (req, res) {
       }
     });
 })
-
 var sessionLog = []
+
 
 app.post('/login', function(req, res) {
 
@@ -71,7 +72,7 @@ app.post('/login', function(req, res) {
 
 	if (email && pass) {
 	
-		con.query('SELECT * FROM ente WHERE email = ? AND pass = ?', [email, pass], function(err, result) {
+		con.query('SELECT * FROM usuario WHERE email = ? AND pass = ?', [email, pass], function(err, result) {
 			
 			if (err) throw err;
 
@@ -79,7 +80,7 @@ app.post('/login', function(req, res) {
 
         var token = CryptoJS.MD5(email + Date.now()).toString();
 
-        con.query('UPDATE ente SET token = ? WHERE id_ente = ?', [token, result[0].id_ente], function(err, result) {
+        con.query('UPDATE usuario SET token = ? WHERE id_usuario = ?', [token, result[0].id_usuario], function(err, result) {
 
           if(err!= null){
             console.log("error en base",err)
@@ -114,7 +115,7 @@ app.post('/listado', function(req,res){
     res.send("logeado");
 
   } else {
-    con.query("SELECT * FROM ente WHERE token = ?;", [token],function(err,result){
+    con.query("SELECT * FROM usuario WHERE token = ?;", [token],function(err,result){
       if(result.length > 0){
 
         sessionLog["id"+token] = {}
@@ -132,9 +133,62 @@ app.post('/listado', function(req,res){
 })
 
 
-app.get('/home', function (req, res) {
-    // console.log("holsaas home")
-    res.sendFile(__dirname+'/html/indexx.html')
+app.get('/add',function(req,res){
+
+  var htmlresp = ""
+
+  fs.readFile(__dirname+'/html/header.html', 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    htmlresp = data
+
+    fs.readFile(__dirname+'/html/add.html', 'utf8', (err, data) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+     htmlresp = htmlresp + data
+       
+    res.writeHead(200,{'Content-Type':'text/html'})
+
+    res.end(htmlresp)
+    });
+
+  
+  });
+
+})
+
+app.post('/newpropiedad',function(req,res){
+})
+
+app.get('/home', function(req, res){
+
+  var htmlresp = ""
+
+  fs.readFile(__dirname+'/html/header.html', 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    htmlresp = data
+
+    fs.readFile(__dirname+'/html/indexx.html', 'utf8', (err, data) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+     htmlresp = htmlresp + data
+       
+    res.writeHead(200,{'Content-Type':'text/html'})
+
+    res.end(htmlresp)
+    });
+
+  });
+
 })
 
 app.get('/home', function (req, res) {
