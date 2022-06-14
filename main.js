@@ -6,14 +6,18 @@ const CryptoJS = require("crypto-js");
 const fs = require('fs');
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/html"))
+app.use(express.static(__dirname + "/file"))
 app.use(bodyParser.urlencoded({extended:true}));
+const fileUpload = require('express-fileupload')
+app.use(fileUpload())
 
 var mysql = require('mysql');
+const { connect } = require("http2");
 
 var con = mysql.createConnection({
     host: "127.0.0.1",
     user: "root",
-    password: "",
+    password: "santycampu",
     database: "inmobiliaria"
 });
 
@@ -21,14 +25,6 @@ con.connect(function (err) {
     if (err) throw err;
     console.log("Connected!");
 });
-
-app.get("/ente", function (req, resp) {
-    console.log("Get Ente ")
-    con.query("SELECT * FROM ente;", function (err, result) {
-        if (err) throw err;
-        console.log("Result: " + result);
-    });
-})
 
 app.post('/register', function (req, res) {
 
@@ -57,6 +53,9 @@ app.post('/register', function (req, res) {
             } else{
               console.log("actualizado correctamente",token)
             }
+            sessionLog["id"+token] = {}
+            sessionLog["id"+token].logged = true
+            sessionLog["id"+token].id_usuario = result1.insertId
           });
           res.send([{"status":200,"token":token}]);
         }
@@ -65,6 +64,16 @@ app.post('/register', function (req, res) {
 })
 var sessionLog = []
 
+app.post('/logout',function(req,res){
+  let token = req.body.token;
+
+  if(sessionLog["id" + token] == null){
+    res.send("Usuario no logueado");
+  } else{
+    sessionLog.splice("id" + token,1);
+  }
+ res.send({"status":200})
+})
 
 app.post('/login', function(req, res) {
 
@@ -92,8 +101,7 @@ app.post('/login', function(req, res) {
 			
         sessionLog["id"+token] = {}
         sessionLog["id"+token].logged = true
-
-        console.log ("sesion",sessionLog)
+        sessionLog["id"+token].id_usuario = result[0].id_usuario
 
         res.send([{"status":200,"token":token}]);
 
@@ -108,7 +116,7 @@ app.post('/login', function(req, res) {
 	}
 });
 
-app.post('/listado', function(req,res){
+app.post('/loginwtoken', function(req,res){
 
   let token = req.body.token;
 
@@ -121,8 +129,7 @@ app.post('/listado', function(req,res){
 
         sessionLog["id"+token] = {}
         sessionLog["id"+token].logged = true
-
-        console.log ("sesion",sessionLog)
+        sessionLog["id"+token].id_usuario = result[0].id_usuario
 
         res.send("logeado")
 
@@ -133,40 +140,121 @@ app.post('/listado', function(req,res){
   }
 })
 
+app.post('/newpropiedad', function(req,res) {
 
-app.get('/add',function(req,res){
+  let token = req.body.token;
+  let descripcion = req.body.descripcion;
+  let direccion = req.body.direccion;
+  let ciudad = req.body.ciudad;
+  let departamento = req.body.departamento;
+  let precio = req.body.precio;
+  let nombre = req.body.nombre;
+  let superficieM2 =req.body.superficieM2;
+  let nrohabitaciones = req.body.nrohabitaciones;
+  let nrobanos = req.body.nrobanos;
+  let nrogarage = req.body.nrogarage;
+  let tipo = req.body.tipo;
+  let tpublicacion = req.body.tpublicacion;
+  console.log(token)
+  if(sessionLog["id" + token]!= null){
+    console.log("existe en el sesionlog")
+    con.query("INSERT INTO propiedad (descripcion,lon,lat,direccion,ciudad,departamento,precio,id_tipopropiedad,id_usuario,tipo_publicacion,nombre,superficieM2,nrohabitaciones,nrobaños,nrogarage) VALUES (?,0,0,?,?,?,?,?,?,?,?,?,?,?,?)", [
+      descripcion,direccion,ciudad,departamento,precio,tipo,sessionLog["id" + token].id_usuario,tpublicacion,nombre,superficieM2,nrohabitaciones,nrobanos,nrogarage
+    ],function(err,result){
+      
+      if(err != null){
 
-  var htmlresp = ""
+        console.log("olas",err)
+        res.send({"status":0})
+      } else {
 
-  fs.readFile(__dirname+'/html/header.html', 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    htmlresp = data
+        // Try para ver si existe la carpeta del usuario
+        
+        try {
 
-    fs.readFile(__dirname+'/html/add.html', 'utf8', (err, data) => {
-      if (err) {
-        console.error(err);
-        return;
+         var files = fs.readFileSync("file/Usr"+sessionLog["id" + token].id_usuario)
+
+        } catch (err) {
+
+          if (err.code === 'ENOENT') {
+
+            console.log("No existe la carperta")
+            fs.mkdirSync("file/Usr"+sessionLog["id" + token].id_usuario)
+
+          }
+        }
+
+        // Guardar archivo recibido por Ajax
+        
+        let EDFile = req.files.file;
+        var filerute = `./file/Usr${sessionLog["id" + token].id_usuario}/${EDFile.name}`;
+        var id_propiedad = result.insertId
+        
+        EDFile.mv(filerute,err => {
+          if(err) {
+            console.log("error al guardar el archivo",err)
+            res.status(0)
+          } else{
+            con.query('INSERT INTO multimedia (id_propiedad,tipo,ruta) VALUES (?,?,?)',[
+              id_propiedad,
+              "img",
+              filerute
+              
+            ],function(err1,result1){
+              if (err1 != null) {
+
+                console.log("error en base de dato",err1)
+                
+              } else {
+                  console.log("Almacenado ruta en base")
+              }
+            })
+            console.log("se guardo el archivo")
+          }
+      })
+        res.status(200)
+        res.redirect('/home')
       }
-     htmlresp = htmlresp + data
-       
-    res.writeHead(200,{'Content-Type':'text/html'})
-
-    res.end(htmlresp)
-    });
-
+      
+    })
+  } else{
+    console.log("este pendejo no tiene sesion")
+  }
+})
   
-  });
+app.get('/obtenerpropiedades',function(req,res){
+
+  var limit = ""
+  if (req.query.limit != null) {
+
+    limit = " LIMIT " + req.query.limit
+    
+  } 
+
+  con.query('SELECT propiedad.*,(SELECT ruta FROM multimedia WHERE multimedia.id_propiedad = propiedad.id_propiedad)AS img FROM propiedad where estado = 1'+limit,function(err,result){
+    if(err != null){
+      console.log(err)
+      res.send({"status":0,"msj":err})
+    } else {
+      res.send({"status":200,"data":result})
+    }
+  })
 
 })
 
-app.post('/newpropiedad',function(req,res){
+app.get('/file/:Usr/:file',function(req,res){
+var ruta = req.params.Usr
+var rute = req.params.file
+  res.sendFile(__dirname+"/file/"+ruta+"/"+rute)
+
 })
 
 app.get("/home", function(req, res){
   res.render(__dirname+"/html/views/index")
+})
+
+app.get("/add", function(req, res){
+  res.render(__dirname+"/html/views/add")
 })
 
 app.listen(PORT, function () {

@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="assets/css/plugins/nice-select.css" />
 
-    <!-- Style CSS -->
     <link rel="stylesheet" href="./assets/css/style.css" />
 
 </head>
@@ -34,7 +33,7 @@
                 <div class="grid grid-cols-12">
                     <div class="col-span-12">
                         <div class="flex flex-wrap items-center justify-between">
-                            <a href="index.html" class="block" style="font-size: 40px;">
+                            <a href="/home" class="block" style="font-size: 40px;">
                                 CR7
                             </a>
                             <nav class="flex flex-wrap items-center">
@@ -55,23 +54,21 @@
 
                                 <a href="#ex1" id="ingresar" rel="modal:open"class="before:rounded-md before:block before:absolute before:left-auto before:right-0 before:inset-y-0 before:-z-[1] before:bg-secondary before:w-0 hover:before:w-full hover:before:left-0 hover:before:right-auto before:transition-all leading-none px-[20px] py-[15px] capitalize font-medium text-white hidden sm:block text-[14px] xl:text-[16px] relative after:block after:absolute after:inset-0 after:-z-[2] after:bg-primary after:rounded-md after:transition-all sm:mr-5 xl:mr-[20px] relative group">Ingresar</a>
 
-                                <a id="cerrar" href="#" class="before:rounded-md before:block before:absolute before:left-auto before:right-0 before:inset-y-0 before:-z-[1] before:bg-secondary before:w-0 hover:before:w-full hover:before:left-0 hover:before:right-auto before:transition-all leading-none px-[20px] py-[15px] capitalize font-medium text-white hidden sm:block text-[14px] xl:text-[16px] relative after:block after:absolute after:inset-0 after:-z-[2] after:bg-primary after:rounded-md after:transition-all sm:mr-5 xl:mr-[20px] relative group" style="display:none;">Cerrar Sesion</a>
+                                <a id="cerrar" href="javascript:void(0)" class="before:rounded-md before:block before:absolute before:left-auto before:right-0 before:inset-y-0 before:-z-[1] before:bg-secondary before:w-0 hover:before:w-full hover:before:left-0 hover:before:right-auto before:transition-all leading-none px-[20px] py-[15px] capitalize font-medium text-white hidden sm:block text-[14px] xl:text-[16px] relative after:block after:absolute after:inset-0 after:-z-[2] after:bg-primary after:rounded-md after:transition-all sm:mr-5 xl:mr-[20px] relative group" style="display:none;">Cerrar Sesion</a>
 
 
                                 <div class="relative group">
                                     <a href="#" class="before:rounded-md before:block before:absolute before:left-auto before:right-0 before:inset-y-0 before:-z-[1] before:bg-secondary before:w-0 hover:before:w-full hover:before:left-0 hover:before:right-auto before:transition-all leading-none px-[20px] py-[15px] capitalize font-medium text-white hidden sm:block text-[14px] xl:text-[16px] relative after:block after:absolute after:inset-0 after:-z-[2] after:bg-primary after:rounded-md after:transition-all sm:mr-5 xl:mr-[20px] relative group">Publicar Propiedad</a>
 
                                     <ul class="list-none bg-white drop-shadow-[0px_6px_10px_rgba(0,0,0,0.2)] rounded-[12px] flex flex-wrap flex-col w-[180px] absolute top-[120%] sm:left-1/2 sm:-translate-x-1/2 transition-all group-hover:top-[60px] invisible group-hover:visible opacity-0 group-hover:opacity-100 right-0">
-                                            <li class="border-b border-dashed border-primary border-opacity-40 last:border-b-0 hover:border-solid transition-all">
-                                                <a href="#" class="font-lora leading-[1.571] text-[14px] text-primary p-[10px] capitalize block transition-all hover:bg-primary hover:text-white text-center my-[-1px] rounded-t-[12px]">Inmobiliaria</a>
-                                            </li>
+                                        <li class="border-b border-dashed border-primary border-opacity-40 last:border-b-0 hover:border-solid transition-all">
+                                            <a href="#" class="font-lora leading-[1.571] text-[14px] text-primary p-[10px] capitalize block transition-all hover:bg-primary hover:text-white text-center my-[-1px] rounded-t-[12px]">Inmobiliaria</a>
+                                        </li>
 
-                                            <li class="border-b border-dashed border-primary border-opacity-40 last:border-b-0 hover:border-solid transition-all">
-                                                <a href="#" class="font-lora leading-[1.571] text-[14px] text-primary p-[10px] capitalize block transition-all hover:bg-primary hover:text-white text-center my-[-1px] rounded-b-[12px]">Dueño Vende/Alquila</a>
-                                            </li>
-
-
-                                        </ul>
+                                        <li class="border-b border-dashed border-primary border-opacity-40 last:border-b-0 hover:border-solid transition-all">
+                                            <a href="#" class="font-lora leading-[1.571] text-[14px] text-primary p-[10px] capitalize block transition-all hover:bg-primary hover:text-white text-center my-[-1px] rounded-b-[12px]">Dueño Vende/Alquila</a>
+                                        </li>
+                                    </ul>
                                 </div>
                                 <la class="ml-2 sm:ml-5 lg:hidden">
                                     <a href="#offcanvas-mobile-menu" class="offcanvas-toggle flex text-[#016450] hover:text-secondary">
@@ -125,11 +122,13 @@
                     <form action="/register" id="register" method="post" >
                         <h2 class="font-lora text-primary text-[24px] sm:text-[30px] leading-[1.277] xl:text-xl mb-[15px] font-medium">
                             Registrate<span class="text-secondary">.</span></h2>
-                        
-                            <select name="tipo">
-                                <option value="1">Cliente</option>
-                                <option value="2">Agencia</option>
-                            </select><br><br>
+
+                            <div class="relative sm:w-[400px]">
+                                <select name="tipo" class="nice-select form-select ">
+                                    <option value="1">Usuario</option>
+                                    <option value="2">Inmobiliaria</option>
+                                </select>
+                            </div><br>
                          <div class="grid grid-cols-12 gap-x-[20px] gap-y-[35px]">
 
                             
@@ -169,7 +168,6 @@
 
                                     <p class="ml-[10px]">¿Ya tienes una cuenta?
                                         <a href="javascript:void(0)" id="showlogin" class="text-secondary">Inicia Sesion</a></p>
-
                                 </div>
                             </div>
                         </div>
@@ -187,7 +185,7 @@
         <!-- offcanvas-mobile-menu start -->
         <div id="offcanvas-mobile-menu" class="offcanvas left-0 transform -translate-x-full fixed font-normal text-sm top-0 z-50 h-screen xs:w-[300px] lg:w-[380px] transition-all ease-in-out duration-300 bg-white">
 
-            <div class="py-12 pr-5 h-[100vh] overflow-y-auto">
+            <div class="py-12 pr-4 h-[100vh] overflow-y-auto">
                 <!-- close button start -->
                 <button class="offcanvas-close text-primary text-[25px] w-10 h-10 absolute right-0 top-0 z-[1]" aria-label="offcanvas">x</button>
                 <!-- close button end -->
@@ -214,7 +212,7 @@
 
                     <div class="mr-7 xl:mr-[40px] relative group py-[20px]">
 
-                        <a href="agency.html" class="transition-all hover:text-secondary">Inmobiliarias</a>
+                        <a href="#" class="transition-all hover:text-secondary">Inmobiliarias</a>
 
                     </div>
                 </nav>
@@ -222,9 +220,9 @@
 
                 <div class="px-5 flex-wrap mt-3 sm:hidden">
 
-                    <a href="#ex1" id="ingresar" rel="modal:open" class="before:rounded-md before:block before:absolute before:left-auto before:right-0 before:inset-y-0 before:-z-[1] before:bg-secondary before:w-0 hover:before:w-full hover:before:left-0 hover:before:right-auto before:transition-all leading-none px-[20px] py-[15px] capitalize font-medium text-white text-[14px] xl:text-[16px] relative after:block after:absolute after:inset-0 after:-z-[2] after:bg-primary after:rounded-md after:transition-all">Ingresar</a>
+                    <a href="#ex1" id="inicio-mb" rel="modal:open" class="before:rounded-md before:block before:absolute before:left-auto before:right-0 before:inset-y-0 before:-z-[1] before:bg-secondary before:w-0 hover:before:w-full hover:before:left-0 hover:before:right-auto before:transition-all leading-none px-[10px] py-[15px] capitalize font-medium text-white text-[14px] xl:text-[16px] relative after:block after:absolute after:inset-0 after:-z-[2] after:bg-primary after:rounded-md after:transition-all">Ingresar</a>
 
-                    <a href="#" id="cerrar" class="before:rounded-md before:block before:absolute before:left-auto before:right-0 before:inset-y-0 before:-z-[1] before:bg-secondary before:w-0 hover:before:w-full hover:before:left-0 hover:before:right-auto before:transition-all leading-none px-[20px] py-[15px] capitalize font-medium text-white text-[14px] xl:text-[16px] relative after:block after:absolute after:inset-0 after:-z-[2] after:bg-primary after:rounded-md after:transition-all" style="display: none">Cerrar Sesion</a>
+                    <a href="#" id="close-mb" class="before:rounded-md before:block before:absolute before:left-auto before:right-0 before:inset-y-0 before:-z-[1] before:bg-secondary before:w-0 hover:before:w-full hover:before:left-0 hover:before:right-auto before:transition-all leading-none px-[10px] py-[15px] capitalize font-medium text-white text-[14px] xl:text-[16px] relative after:block after:absolute after:inset-0 after:-z-[2] after:bg-primary after:rounded-md after:transition-all" style="display: none">Cerrar Sesion</a>
                     
                     
                     <b class="relative group">
@@ -245,6 +243,20 @@
                 </div>
             </div>
         </div>
+        <style type="text/css">
+            .px-\[10px\] {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            .blocker{
+                z-index: 99;
+            }
+            @media only screen and (max-width: 600px) {
+                #cerrar {
+                 display: none!important;   
+                }
+            }
+        </style>
         <script>
         
             $("#login").submit(function(e) {
@@ -253,17 +265,6 @@
         
                var form = $(this);
                var actionUrl = form.attr('action');
-        
-               if(localStorage.getItem("token")!=null){
-               $.ajax({
-                       type: "POST",
-                       url: "listado", 
-                       data: {"token":localStorage.getItem("token")}, 
-                       success: function(data2){
-                           console.log(data2)
-                       }
-                   })
-               } else{
         
                    $.ajax({
                    type: "POST",
@@ -276,11 +277,13 @@
         
                            $("#ingresar").hide();
                            $("#cerrar").show();
+                           $("#inicio-mb").hide();
+                           $("#close-mb").show();
                            document.getElementById("close").click();
         
                            $.ajax({
                                type: "POST",
-                               url: "listado",
+                               url: "loginwtoken",
                                data: {"token":data[0].token}, 
                                success: function(data2){
                                    console.log(data2)
@@ -295,8 +298,6 @@
         
                        } 
                    }});
-        
-               }
            });
         
            $("#register").submit(function(e) {
@@ -316,8 +317,8 @@
                        if(data[0].status == 200){
         
                            localStorage.setItem("token",data[0].token);
-                           $("#ex1,#ingresar").hide();
-                           $("#cerrar").show();
+                           $("#ex1,#ingresar,#inicio-mb").hide();
+                           $("#cerrar,#close-mb").show();
                            document.getElementById("close").click();
         
                        } else {
@@ -334,13 +335,18 @@
                if(localStorage.getItem("token")!=null){
                    $.ajax({
                        type: "POST",
-                       url: "listado", 
+                       url: "loginwtoken", 
                        data: {"token":localStorage.getItem("token")}, 
                        success: function(data2){
-                           console.log(data2)
-                           $("#ex1").hide();
-                           $("#cerrar").show();
-                           $("#ingresar").hide();
+                           console.log("loginwtoken",data2)
+                           if (data2 != "no logeado") {
+                             $("#ex1").hide();
+                             $("#cerrar").show();
+                             $("#ingresar").hide();
+                             $("#close-mb").show();
+                             $("#inicio-mb").hide();
+                           }
+                          
                        }
                    })
                }
@@ -353,10 +359,21 @@
             $("#modalregister").hide();
              $("#modallogin").show();
            })
-           $("#cerrar").click (function(){
-               localStorage.clear(); 
-               $("#cerrar").hide();
-               $("#ingresar").show();
-               console.log("cerraste sesion");
+           $("#cerrar,#close-mb").click (function(){
+
+                $.ajax({
+                    type: "POST",
+                    url: "logout", 
+                    data: {"token":localStorage.getItem("token")}, 
+                    success: function(data2){
+                        localStorage.clear(); 
+                        $("#cerrar").hide();
+                        $("#ingresar").show();
+                        $("#close-mb").hide();
+                        $("#inicio-mb").show();
+                        console.log("cerraste sesion");
+                    }
+                })
            })
+           
            </script>
