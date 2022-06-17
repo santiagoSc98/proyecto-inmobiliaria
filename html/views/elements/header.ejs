@@ -27,7 +27,7 @@
 
 <body class="font-karla text-body text-tiny">
     <div class="overflow-hidden">
-        <!-- Header start -->
+     
         <header id="sticky-header" class="absolute left-0 top-[15px] lg:top-[30px] xl:top-[45px] w-full z-10">
             <div class="container">
                 <div class="grid grid-cols-12">
@@ -53,11 +53,27 @@
                                 </ul>
 
                                 <a href="#ex1" id="ingresar" rel="modal:open"class="before:rounded-md before:block before:absolute before:left-auto before:right-0 before:inset-y-0 before:-z-[1] before:bg-secondary before:w-0 hover:before:w-full hover:before:left-0 hover:before:right-auto before:transition-all leading-none px-[20px] py-[15px] capitalize font-medium text-white hidden sm:block text-[14px] xl:text-[16px] relative after:block after:absolute after:inset-0 after:-z-[2] after:bg-primary after:rounded-md after:transition-all sm:mr-5 xl:mr-[20px] relative group">Ingresar</a>
-
-                                <a id="cerrar" href="javascript:void(0)" class="before:rounded-md before:block before:absolute before:left-auto before:right-0 before:inset-y-0 before:-z-[1] before:bg-secondary before:w-0 hover:before:w-full hover:before:left-0 hover:before:right-auto before:transition-all leading-none px-[20px] py-[15px] capitalize font-medium text-white hidden sm:block text-[14px] xl:text-[16px] relative after:block after:absolute after:inset-0 after:-z-[2] after:bg-primary after:rounded-md after:transition-all sm:mr-5 xl:mr-[20px] relative group" style="display:none;">Cerrar Sesion</a>
-
-
+                                
                                 <div class="relative group">
+                                    
+                                     <a style="display: none;" id="perfil" class="before:rounded-md before:block before:absolute before:left-auto before:right-0 before:inset-y-0 before:-z-[1] before:bg-secondary before:w-0 hover:before:w-full hover:before:left-0 hover:before:right-auto before:transition-all leading-none px-[20px] py-[15px] capitalize font-medium text-white hidden sm:block text-[14px] xl:text-[16px] relative after:block after:absolute after:inset-0 after:-z-[2] after:bg-primary after:rounded-md after:transition-all sm:mr-5 xl:mr-[20px] relative group">Bienvenido</a>
+
+                                     <ul class="list-none bg-white drop-shadow-[0px_6px_10px_rgba(0,0,0,0.2)] rounded-[12px] flex flex-wrap flex-col w-[180px] absolute top-[120%] sm:left-1/2 sm:-translate-x-1/2 transition-all group-hover:top-[60px] invisible group-hover:visible opacity-0 group-hover:opacity-100 right-0">
+                                        <li class="border-b border-dashed border-primary border-opacity-40 last:border-b-0 hover:border-solid transition-all">
+                                            <a href="javascript:void(0)" onclick="opendashboard()"  class="font-lora leading-[1.571] text-[14px] text-primary p-[10px] capitalize block transition-all hover:bg-primary hover:text-white text-center my-[-1px] rounded-t-[12px]">Perfil</a>
+                                        </li>
+                                        <li class="border-b border-dashed border-primary border-opacity-40 last:border-b-0 hover:border-solid transition-all">
+                                            <a href="/add" class="font-lora leading-[1.571] text-[14px] text-primary p-[10px] capitalize block transition-all hover:bg-primary hover:text-white text-center my-[-1px] ">Publicar Propiedad</a>
+                                        </li>
+                                        <li class="border-b border-dashed border-primary border-opacity-40 last:border-b-0 hover:border-solid transition-all">
+                                            <a id="cerrar" href="javascript:void(0)" class="font-lora leading-[1.571] text-[14px] text-primary p-[10px] capitalize block transition-all hover:bg-primary hover:text-white text-center my-[-1px] rounded-b-[12px]" >Cerrar Sesion</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                
+
+                                <div class="relative group" id="p-nologin">
                                     <a href="#" class="before:rounded-md before:block before:absolute before:left-auto before:right-0 before:inset-y-0 before:-z-[1] before:bg-secondary before:w-0 hover:before:w-full hover:before:left-0 hover:before:right-auto before:transition-all leading-none px-[20px] py-[15px] capitalize font-medium text-white hidden sm:block text-[14px] xl:text-[16px] relative after:block after:absolute after:inset-0 after:-z-[2] after:bg-primary after:rounded-md after:transition-all sm:mr-5 xl:mr-[20px] relative group">Publicar Propiedad</a>
 
                                     <ul class="list-none bg-white drop-shadow-[0px_6px_10px_rgba(0,0,0,0.2)] rounded-[12px] flex flex-wrap flex-col w-[180px] absolute top-[120%] sm:left-1/2 sm:-translate-x-1/2 transition-all group-hover:top-[60px] invisible group-hover:visible opacity-0 group-hover:opacity-100 right-0">
@@ -178,11 +194,8 @@
           <a href="javascript:void(0)" id="close" rel="modal:close"></a>
         </div>
 
-        <!-- offcanvas-overlay start -->
         <div class="offcanvas-overlay hidden fixed inset-0 bg-black opacity-50 z-50"></div>
-        <!-- offcanvas-overlay end -->
-
-        <!-- offcanvas-mobile-menu start -->
+  
         <div id="offcanvas-mobile-menu" class="offcanvas left-0 transform -translate-x-full fixed font-normal text-sm top-0 z-50 h-screen xs:w-[300px] lg:w-[380px] transition-all ease-in-out duration-300 bg-white">
 
             <div class="py-12 pr-4 h-[100vh] overflow-y-auto">
@@ -243,6 +256,7 @@
                 </div>
             </div>
         </div>
+    </div>
         <style type="text/css">
             .px-\[10px\] {
                 padding-left: 10px;
@@ -255,6 +269,10 @@
                 #cerrar {
                  display: none!important;   
                 }
+            }
+            img.w-full.h-full {
+                object-fit: cover;
+                height: 300px;
             }
         </style>
         <script>
@@ -275,10 +293,8 @@
                        console.log("Respuesta",data[0].status)
                        if (data[0].status == 200){
         
-                           $("#ingresar").hide();
-                           $("#cerrar").show();
-                           $("#inicio-mb").hide();
-                           $("#close-mb").show();
+                           $("#inicio-mb,#ingresar,#p-nologin").hide();
+                           $("#close-mb,#perfil").show();
                            document.getElementById("close").click();
         
                            $.ajax({
@@ -287,6 +303,8 @@
                                data: {"token":data[0].token}, 
                                success: function(data2){
                                    console.log(data2)
+                                   $("#perfil").text("Bienvenido "+ data2.Usrname)
+                                  
                                }
                            })
         
@@ -317,10 +335,21 @@
                        if(data[0].status == 200){
         
                            localStorage.setItem("token",data[0].token);
-                           $("#ex1,#ingresar,#inicio-mb").hide();
-                           $("#cerrar,#close-mb").show();
+                           $("#ex1,#ingresar,#inicio-mb,#p-nologin").hide();
+                           $("#cerrar,#close-mb,#perfil").show();
                            document.getElementById("close").click();
-        
+
+                           $.ajax({
+                               type: "POST",
+                               url: "loginwtoken",
+                               data: {"token":data[0].token}, 
+                               success: function(data2){
+                                   console.log(data2)
+                                   $("#perfil").text("Bienvenido "+ data2.Usrname)
+                                  
+                               }
+                           })
+
                        } else {
                         $("#msgusr").show();
                        }
@@ -338,19 +367,20 @@
                        url: "loginwtoken", 
                        data: {"token":localStorage.getItem("token")}, 
                        success: function(data2){
-                           console.log("loginwtoken",data2)
+                        
                            if (data2 != "no logeado") {
-                             $("#ex1").hide();
-                             $("#cerrar").show();
-                             $("#ingresar").hide();
-                             $("#close-mb").show();
-                             $("#inicio-mb").hide();
+                            console.log(data2.Usrname)
+                            $("#perfil").text("Bienvenido "+ data2.Usrname)
+                             $("#perfil,#close-mb").show();
+                             $("#ex1,#inicio-mb,#ingresar,#p-nologin").hide();
                            }
-                          
+
                        }
                    })
                }
            });
+
+           
            $("#showregister").click(function(){
             $("#modalregister").show();
              $("#modallogin").hide();
@@ -367,13 +397,28 @@
                     data: {"token":localStorage.getItem("token")}, 
                     success: function(data2){
                         localStorage.clear(); 
-                        $("#cerrar").hide();
-                        $("#ingresar").show();
-                        $("#close-mb").hide();
-                        $("#inicio-mb").show();
+                        $("#perfil,#close-mb").hide();
+                        $("#inicio-mb,#p-nologin,#ingresar").show();
                         console.log("cerraste sesion");
                     }
                 })
            })
            
-           </script>
+           function opendashboard(){
+               $.ajax({
+                   type:"POST",
+                   url:"dashboard",
+                   data: {"token":localStorage.getItem("token")}, 
+                   success:function(data){
+                       if (data.status == 0) {
+                           console.log("Usuario no logueado")
+                       } else {
+                        document.open()
+                        document.write(data)
+                        document.close()
+                       }
+                   }
+               })
+           }
+        </script>
+    

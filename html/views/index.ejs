@@ -58,8 +58,7 @@
                 <div class="col-12">
                     <div class="properties-slider">
                         <div class="swiper -mx-[20px] lg:-mx-[15px] -my-[60px] px-[20px] lg:px-[15px] py-[60px]">
-                            <div style="width: 370px;margin-right: 30px; " id="bloques">
-                                <!-- swiper-slide start -->
+                            <div class="swiper-wrapper" style="width: 370px;margin-right: 30px; " id="bloques">
                                 <% if (rows) { %>
                                     <% for(var i=0; i<rows.length; i++){ %>
                                         <div class="swiper-slide bloque0" id="bloque1">
@@ -67,9 +66,11 @@
                                                 class="overflow-hidden rounded-md drop-shadow-[0px_0px_5px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center transition-all duration-300 hover:-translate-y-[10px]">
                                                 <div class="relative">
                                                     <a href="#" class="block">
-                                                        <img src="assets/images/properties/properties1.jpg"
-                                                            class="w-full h-full" loading="lazy" width="370"
-                                                            height="266" alt="Orchid Casel de Paradise.">
+                                                        <% if (rows[i].img == null || rows[i].img == ""){ %>
+                                                        <img alt="banana" src="https://thumbs.dreamstime.com/b/casa-de-vuelo-en-la-ilustraci%C3%B3n-del-vector-esbozo-nubes-las-dibujo-grabado-vectorial-dise%C3%B1o-impresi%C3%B3n-ropa-camisa-imitaci%C3%B3n-195250717.jpg" class="w-full h-full" loading="lazy" width="370" height="266" >
+                                                        <%  }else{ %>
+                                                        <img src="<%= rows[i].img %>" class="w-full h-full" loading="lazy" width="370" height="266" >
+                                                        <% } %>
                                                     </a>
                                                     <div class="flex flex-wrap flex-col absolute top-5 right-5">
                                                         <button
@@ -78,14 +79,11 @@
                                                                 loading="lazy" width="13" height="10"
                                                                 alt="camera icon">07</button>
                                                         <button
-                                                            class="flex flex-wrap items-center bg-[rgb(11,44,61,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img
-                                                                class="mr-1" src="assets/images/icon/video.png"
-                                                                loading="lazy" width="14" height="10"
-                                                                alt="camera icon">08</button>
+                                                            class="flex flex-wrap items-center bg-[rgb(11,44,61,0.8)] p-[5px] rounded-[2px] text-white text-xs">
+                                                            <img class="mr-1" src="assets/images/icon/video.png" loading="lazy" width="14" height="10" alt="camera icon">08</button>
                                                     </div>
                                                     <span
-                                                        class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-primary leading-none text-[14px] font-normal capitalize">for
-                                                        Sale</span>
+                                                        class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-primary leading-none text-[14px] font-normal capitalize"><%= rows[i].tipo_publicacion %></span>
                                                 </div>
 
                                                 <div class="py-[20px] px-[20px] text-left">
@@ -171,14 +169,12 @@
                                                     <ul>
                                                         <li class="flex flex-wrap items-center justify-between"
                                                             id="precio">
-                                                            <span
-                                                                class="font-lora text-base text-primary leading-none font-medium">Precio:
+                                                            <span class="font-lora text-base text-primary leading-none font-medium">Precio:
                                                                 <%= rows[i].precio %> GS.
                                                             </span>
 
                                                             <span class="flex flex-wrap items-center">
-                                                                <button
-                                                                    class="mr-[15px] text-[#9D9C9C] hover:text-secondary"
+                                                                <button class="mr-[15px] text-[#9D9C9C] hover:text-secondary"
                                                                     aria-label="svg">
                                                                     <svg width="16" height="16" viewBox="0 0 16 16"
                                                                         fill="currentColor"
@@ -219,9 +215,7 @@
                                             </div>
                                         </div>
                                         <% } %>
-                                            <% } %>
-
-                                                <!-- swiper-slide end-->
+                                <% } %>
                             </div>
                             <!-- Add Pagination -->
                             <div class="swiper-pagination"></div>
@@ -266,59 +260,5 @@
 
     <!-- Activation JS -->
     <script src="assets/js/main.js"></script>
-    <script>
-        function dibujar(item, index, arr) {
-            // console.log(item.direccion,item.nombre,item.superficieM2,item.ciudad,item.img)
-            console.log(item)
-            var divtarjeta = document.createElement("div")
-            divtarjeta.id = "bloque" + index
-
-            divtarjeta.setAttribute("class", "overflow-hidden rounded-md drop-shadow-[0px_0px_5px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center transition-all duration-300 hover:-translate-y-[10px]")
-            var divrelative = document.createElement("div")
-            divrelative.setAttribute("class", "relative")
-            divtarjeta.append(divrelative)
-
-            var img = document.createElement("img")
-            img.setAttribute("class", "w-full h-full")
-            divtarjeta.append(img)
-            img.setAttribute("src", item.img)
-            item.img == null ? img.setAttribute("src", "https://i.pinimg.com/originals/5d/29/91/5d2991fc6d58c500448a0cff85f59780.jpg") : img.setAttribute("src", item.img)
-
-            var tipo = document.createElement("span")
-            tipo.setAttribute("class", "absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-primary leading-none text-[14px] font-normal capitalize")
-            divrelative.append(tipo)
-            if (item.tipo_publicacion == 1) {
-                tipo.innerHTML = " En Venta"
-            } else {
-                tipo.innerHTML = "En Alquiler"
-            }
-
-            var divp = document.createElement("div")
-            divp.setAttribute("class", "py-[20px] px-[20px] text-left")
-
-            var nombretarjeta = document.createElement("h3")
-            nombretarjeta.innerHTML = item.nombre
-            divp.append(nombretarjeta)
-
-            divtarjeta.append(divp)
-            document.getElementById("bloques").append(divtarjeta)
-
-        }
-
-        $(document).ready(function () {
-            $.ajax({
-                type: "GET",
-                url: "obtenerpropiedades?limit=6",
-                success: function (resp) {
-                    if (resp.status == 200) {
-                        resp.data.forEach(dibujar)
-                    } else {
-                        console.log(resp.msj)
-                    }
-                }
-            })
-        })
-    </script>
     </body>
-
     </html>

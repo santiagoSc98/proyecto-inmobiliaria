@@ -18,7 +18,7 @@
         <div class="pt-[80px] lg:pt-[120px] add-properties-form-select">
             <div class="container">
                 <form action='/newpropiedad' method="POST" enctype="multipart/form-data" id="newprop">
-
+                    <input type="hidden" name="token" value="javascript:localStorage.getItem('token')">
                     <div class="grid grid-cols-12 gap-x-[30px]">
 
                         <div class="mb-[45px] col-span-12 md:col-span-8">
@@ -101,8 +101,8 @@
 
                             <div class="relative">
                                 <select class="nice-select form-select" name="tpublicacion" id="PropertyStatus1">
-                                    <option value="1">Venta</option>
-                                    <option value="2">Alquiler</option>
+                                    <option value="En Venta">Venta</option>
+                                    <option value="En Alquiler">Alquiler</option>
                                 </select>
                             </div>
 
@@ -229,6 +229,12 @@
 
     })
     $("#newprop").submit(function(e) {
+        console.log("hoa new pro")
+           if (localStorage.getItem("token") == null) {
+            e.preventDefault()
+            document.getElementById("ingresar").click();
+           document.getElementById("showregister").click();
+           } 
         console.log("eeeeee",e)
 
     })
