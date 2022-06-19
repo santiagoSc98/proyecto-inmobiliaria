@@ -54,23 +54,20 @@ function obtenerpropiedades(_limit, id_usuario = null, estado = null) {
 		var filtrousuario = ""
 
 		if (id_usuario != null) {
-			if (estado == null) {
-				filtrousuario = " WHERE id_usuario = " + id_usuario
-			} else {
-				filtrousuario = " AND id_usuario = " + id_usuario
-			}
+		
+			filtrousuario = " AND id_usuario = " + id_usuario
 		}
 		var filtroestado = ""
 
 		if (estado != null) {
-			filtroestado = " WHERE estado = " + estado
+			filtroestado = " AND estado = " + estado
 		}
 
 		if (_limit != null) {
 			limit = " LIMIT " + _limit;
 		}
 		con.query(
-			"SELECT propiedad.*,tipopropiedad.descripcion as dcp,(SELECT ruta FROM multimedia WHERE multimedia.id_propiedad = propiedad.id_propiedad)AS img FROM propiedad INNER JOIN tipopropiedad ON propiedad.id_tipopropiedad = tipopropiedad.id_tipopropiedad " + filtroestado + filtrousuario +
+			"SELECT propiedad.*,tipopropiedad.descripcion as dcp,(SELECT ruta FROM multimedia WHERE multimedia.id_propiedad = propiedad.id_propiedad)AS img FROM propiedad INNER JOIN tipopropiedad ON propiedad.id_tipopropiedad = tipopropiedad.id_tipopropiedad WHERE estado != 2 " + filtroestado + filtrousuario +
 			limit,
 			function (err, result) {
 				if (err != null) {
@@ -177,8 +174,8 @@ app.post("/login", function (req, res) {
 							}
 						}
 					);
-					managesesion(result, token);
 
+					managesesion(result, token);
 
 					res.send([{ status: 200, token: token }]);
 				} else {
@@ -346,26 +343,42 @@ app.get("/home", async function (req, res) {
 	}
 });
 
-app.post("/dashboard", async function (req, res) {
+app.get("/dashboard", async function (req, res) {
 
-	if (req.body.token == null) {
-		res.send({ "status": 0 })
-
-	} else {
-		var token = req.body.token
-		if (sessionLog["id" + token] != null) {
-			console.log("nombre", sessionLog["id" + token].nombre)
-			var resp = await obtenerpropiedades(null, sessionLog["id" + token].id_usuario)
+		// var token = req.body.token
+		// if (sessionLog["id" + token] != null) {
+		// 	console.log("nombre", sessionLog["id" + token].nombre)
+		// 	var resp = await obtenerpropiedades(null, sessionLog["id" + token].id_usuario)
 			res.render("dashboard", {
-				sessionLog: sessionLog["id" + token],
-				propiedades: resp
+				// sessionLog: sessionLog["id" + token],
+				sessionLog: null,
+				propiedades:null
 			})
 
-		} else {
-			res.send({ "status": 0 })
-		}
-		console.log("hola", token)
+		// } else {
+		// 	res.send({ "status": 0 })
+		// }
+		// console.log("hola", token)
+	
+
+})
+
+app.post("/dashboard", async function (req, res) {
+
+	var token = req.body.token
+	if (sessionLog["id" + token] != null) {
+		console.log("nombre", sessionLog["id" + token].nombre)
+		var resp = await obtenerpropiedades(null, sessionLog["id" + token].id_usuario)
+		res.render("dashboard", {
+			sessionLog: sessionLog["id" + token],
+			propiedades: resp
+		})
+
+	} else {
+		res.send({ "status": 0 })
 	}
+	console.log("hola", token)
+
 
 })
 

@@ -21,6 +21,10 @@
     <link rel="stylesheet" href="assets/css/plugins/nice-select.css" />
 
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 
 </head>
 
@@ -405,20 +409,22 @@
            })
            
            function opendashboard(){
-               $.ajax({
-                   type:"POST",
-                   url:"dashboard",
-                   data: {"token":localStorage.getItem("token")}, 
-                   success:function(data){
-                       if (data.status == 0) {
-                           console.log("Usuario no logueado")
-                       } else {
-                        document.open()
-                        document.write(data)
-                        document.close()
-                       }
-                   }
-               })
+
+            var form = document.createElement("form")
+            var element1 = document.createElement("input")
+
+            form.method = "POST"
+            form.action = "dashboard"
+
+            element1.value=localStorage.getItem("token")
+            element1.name= "token"
+            element1.type = "hidden"
+            form.appendChild(element1)
+
+            document.body.appendChild(form)
+
+            form.submit()
+
            }
         </script>
     

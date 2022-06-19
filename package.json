@@ -16,7 +16,8 @@
     "http": "^0.0.1-security",
     "mongodb": "^4.6.0",
     "mysql": "^2.18.1",
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.16",
+    "sweetalert2": "^11.4.17"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
