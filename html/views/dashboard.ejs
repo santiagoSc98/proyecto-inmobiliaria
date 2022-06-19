@@ -1,54 +1,88 @@
 <%- include ("elements/header") %>
 
-<% if (sessionLog) { %>
+  <% if (sessionLog) { %>
 
-   
     <link rel="stylesheet" href="./assets/css/sty.css" />
-</div>
+    </div>
     <!-- partial:index.partial.html -->
     <div class="app-container">
       <div class="sidebar">
         <ul class="sidebar-list">
-            <div class="account-info">
-                <div class="account-info-picture">
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_-r1taW-jqqIsiDGkpEsQTGv3E-aETHZYR9ORvyZV9bfQaAMywPPW9konKpFvgFja5bs&usqp=CAU" alt="Account">
-                </div>
-                <div class="account-info-name"><%= sessionLog.nombre %></div>
-              </div>
+          <div class="account-info">
+            <div class="account-info-picture">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_-r1taW-jqqIsiDGkpEsQTGv3E-aETHZYR9ORvyZV9bfQaAMywPPW9konKpFvgFja5bs&usqp=CAU"
+                alt="Account">
+            </div>
+            <span class="account-info-name">
+              <%= sessionLog.nombre %>
+            </span>
+          </div>
           <li class="sidebar-list-item">
             <a href="#">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-home">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
               <span>Inicio</span>
             </a>
           </li>
           <li class="sidebar-list-item active">
             <a href="#">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-shopping-bag">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+              </svg>
               <span>Publicaciones</span>
             </a>
           </li>
           <li class="sidebar-list-item">
             <a href="#">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pie-chart"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-pie-chart">
+                <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+                <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+              </svg>
               <span>Estadisticas</span>
             </a>
           </li>
           <li class="sidebar-list-item">
             <a href="#">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-inbox"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-inbox">
+                <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline>
+                <path
+                  d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z">
+                </path>
+              </svg>
               <span>Inbox</span>
             </a>
           </li>
           <li class="sidebar-list-item">
             <a href="#">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-bell">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
               <span>Notifications</span>
             </a>
           </li>
         </ul>
         <div class="account-info">
-            <div class="account-info-name"><a id="cerrar" href="javascript:void(0)">Cerrar Sesion</a></div>
-          </div>
+          <div class="account-info-name sidebar ">
+            <a id="cerrar" href="javascript:void(0)" style="display:flex ;align-items: center;">
+             <span style="margin-right:10px">Cerrar Sesion</span> 
+              <span class="iconify" data-icon="uiw:logout" data-width="15" data-height="15"></span></a></div>
+        </div>
       </div>
       <div class="app-content">
         <div class="app-content-header">
@@ -59,37 +93,53 @@
           <input class="search-bar" placeholder="Buscar..." type="text">
           <div class="app-content-actions-wrapper">
             <div class="filter-button-wrapper">
-              <button class="action-button filter jsFilter"><span>Filtrar</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg></button>
+              <button class="action-button filter jsFilter"><span>Filtrar</span><svg xmlns="http://www.w3.org/2000/svg"
+                  width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter">
+                  <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                </svg></button>
               <div class="filter-menu">
-                <label>Category</label>
+                <label>Categorias</label>
                 <select>
-                  <option>All Categories</option>
-                  <option>Furniture</option>
-                  <option>Decoration</option>
-                  <option>Kitchen</option>
-                  <option>Bathroom</option>
+                  <option>Todas las Categorias</option>
                 </select>
-                <label>Status</label>
+                <label>Estado</label>
                 <select>
-                  <option>All Status</option>
+                  <option>Todos los Estados</option>
                   <option>Disponible</option>
                   <option>No Dispponible</option>
                 </select>
                 <div class="filter-menu-buttons">
                   <button class="filter-button reset">
-                    Reset
+                    Resetear
                   </button>
                   <button class="filter-button apply">
-                    Apply
+                    Aplicar
                   </button>
                 </div>
               </div>
             </div>
             <button class="action-button list active" title="List View">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-list">
+                <line x1="8" y1="6" x2="21" y2="6"></line>
+                <line x1="8" y1="12" x2="21" y2="12"></line>
+                <line x1="8" y1="18" x2="21" y2="18"></line>
+                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+              </svg>
             </button>
             <button id="grid" class="action-button" title="Grid View">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-grid">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
             </button>
           </div>
         </div>
@@ -100,139 +150,228 @@
               <button class="sort-button">
               </button>
             </div>
-           
+
             <div class="product-cell category">Tipo de Propiedad<button class="sort-button">
               </button>
             </div>
             <div class="product-cell sales">Tipo de Publicacion<button class="sort-button">
               </button>
             </div>
-              <div class="product-cell status-cell">Estado<button class="sort-button">
-              </button>
-            </div>
+           
             <div class="product-cell stock">Dirección<button class="sort-button">
               </button>
             </div>
             <div class="product-cell price">Superfice<button class="sort-button">
-            </button>
-          </div>
+              </button>
+            </div>
             <div class="product-cell price">Precio<button class="sort-button">
               </button>
             </div>
+            <div class="product-cell status-cell">Estado<button class="sort-button">
+            </button>
+          </div>
+          <div class="product-cell accion">Accion<button class="sort-button">
+          </button>
+        </div>
           </div>
           <% for(var i=0; i<propiedades.length; i++){ %>
-              
-          <div class="products-row">
-            <button class="cell-more-button">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
-            </button>
+
+            <div class="products-row">
+              <button class="cell-more-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-more-vertical">
+                  <circle cx="12" cy="12" r="1"></circle>
+                  <circle cx="12" cy="5" r="1"></circle>
+                  <circle cx="12" cy="19" r="1"></circle>
+                </svg>
+              </button>
               <div class="product-cell image">
-                  <% if (propiedades[i].img == null || propiedades[i].img == ""){ %>
-                <img src="https://thumbs.dreamstime.com/b/casa-de-vuelo-en-la-ilustraci%C3%B3n-del-vector-esbozo-nubes-las-dibujo-grabado-vectorial-dise%C3%B1o-impresi%C3%B3n-ropa-camisa-imitaci%C3%B3n-195250717.jpg" alt="product">
-                <% } else { %>
+                <% if (propiedades[i].img==null || propiedades[i].img=="" ){ %>
+                  <img
+                    src="https://thumbs.dreamstime.com/b/casa-de-vuelo-en-la-ilustraci%C3%B3n-del-vector-esbozo-nubes-las-dibujo-grabado-vectorial-dise%C3%B1o-impresi%C3%B3n-ropa-camisa-imitaci%C3%B3n-195250717.jpg"
+                    alt="product">
+                  <% } else { %>
                     <img src="<%= propiedades[i].img  %>" alt="product">
                     <% } %>
-                <span><%= propiedades[i].nombre  %></span>
+                      <span>
+                        <%= propiedades[i].nombre %>
+                      </span>
               </div>
-            <div class="product-cell category">
-                <span class="cell-label">Tipo de Propiedad:</span><%= propiedades[i].dcp  %></div>
-            <div class="product-cell sales">
-                <span class="cell-label">Tipo de Publicacion:</span><%= propiedades[i].tipo_publicacion  %></div>
-            <div class="product-cell status-cell">
+              <div class="product-cell category">
+                <span class="cell-label">Tipo de Propiedad:</span>
+                <%= propiedades[i].dcp %>
+              </div>
+              <div class="product-cell sales">
+                <span class="cell-label">Tipo de Publicacion:</span>
+                <%= propiedades[i].tipo_publicacion %>
+              </div>
+              <div class="product-cell stock"><span class="cell-label">Dirección:</span>
+                <%= propiedades[i].direccion %> - <%= propiedades[i].ciudad %>
+              </div>
+              <div class="product-cell Superfice"><span class="cell-label">Superficie:</span>
+                <%= propiedades[i].superficieM2 %>
+              </div>
+              <div class="product-cell price"><span class="cell-label">Precio:</span>
+                <%= propiedades[i].precio %> Gs
+              </div>
+              <div class="product-cell status-cell">
                 <span class="cell-label">Estado:</span>
-                <% if (propiedades[i].estado == 1) { %>
-                    <a href="javascript:void(0)" onclick="changestatus(this)" data-estado="1"  data-propiedadid="<%= propiedades[i].id_propiedad %>" class="status active">Disponible</a>
-                <% } else{ %>
-                    <a href="javascript:void(0)" onclick="changestatus(this)" data-estado="0" data-propiedadid="<%= propiedades[i].id_propiedad %> "class="status disabled">No Disponible</a>
-                <% } %>
-               
+                <% if (propiedades[i].estado==1) { %>
+                  <a href="javascript:void(0)" onclick="changestatus(this)" data-estado="1"
+                    data-propiedadid="<%= propiedades[i].id_propiedad %>" class="status active">Disponible</a>
+                  <% } else{ %>
+                    <a href="javascript:void(0)" onclick="changestatus(this)" data-estado="0"
+                      data-propiedadid="<%= propiedades[i].id_propiedad %> " class="status disabled">No Disponible</a>
+                    <% } %>
               </div>
-            <div class="product-cell stock"><span class="cell-label">Dirección:</span><%= propiedades[i].direccion  %> - <%= propiedades[i].ciudad  %> </div>
-            <div class="product-cell Superfice"><span class="cell-label">Superficie:</span><%= propiedades[i].superficieM2 %></div>
-            <div class="product-cell price"><span class="cell-label">Precio:</span><%= propiedades[i].precio %> gs</div>
-          </div>
-          <% } %>
+              <div class="product-cell accion"><span class="cell-label">Accion:</span>
+                <div style="display: flex;width: 70%;justify-content: space-between;">
+                  <div>
+                    <a href="/add">
+                    <span class="iconify" data-icon="akar-icons:edit" data-width="30" data-height="30" style="color: #57b889;"></span>
+                    </a>
+                  </div>
+                  <div>
+                    <a href="javascript:value(0)" data-propiedadid="<%= propiedades[i].id_propiedad %> "  onclick="alert(this)">
+                    <span class="iconify" data-icon="ep:delete" data-width="30" data-height="30" style="color: #d95050;"></span>
+                    </a>
+                   </div>
+                </div>
+              </div>
+            </div>
+            <% }  %>
         </div>
       </div>
     </div>
     <!-- partial -->
-     <script type="text/javascript">
-         document.querySelector(".jsFilter").addEventListener("click", function () {
+    <script type="text/javascript">
+      document.querySelector(".jsFilter").addEventListener("click", function () {
         document.querySelector(".filter-menu").classList.toggle("active");
-        });
-    
-        document.querySelector("#grid").addEventListener("click", function () {
-          document.querySelector(".list").classList.remove("active");
-          document.querySelector("#grid").classList.add("active");
-          document.querySelector(".products-area-wrapper").classList.add("gridView");
-          document
-            .querySelector(".products-area-wrapper")
-            .classList.remove("tableView");
-        });
-    
-        document.querySelector(".list").addEventListener("click", function () {
-          document.querySelector(".list").classList.add("active");
-          document.querySelector("#grid").classList.remove("active");
-          document.querySelector(".products-area-wrapper").classList.remove("gridView");
-          document.querySelector(".products-area-wrapper").classList.add("tableView");
-        });
-        if($(window).width() < 767) {
-            $("#grid").click()
-        }
-        $("#cerrar,#close-mb").click (function(){
+      });
 
-            $.ajax({
-                type: "POST",
-                url: "logout", 
-                data: {"token":localStorage.getItem("token")}, 
-                success: function(data2){
-                    localStorage.clear(); 
-                    console.log("cerraste sesion");
-                    window.location.href = "/home"
-                }
-            })
+      document.querySelector("#grid").addEventListener("click", function () {
+        document.querySelector(".list").classList.remove("active");
+        document.querySelector("#grid").classList.add("active");
+        document.querySelector(".products-area-wrapper").classList.add("gridView");
+        document
+          .querySelector(".products-area-wrapper")
+          .classList.remove("tableView");
+      });
+
+      document.querySelector(".list").addEventListener("click", function () {
+        document.querySelector(".list").classList.add("active");
+        document.querySelector("#grid").classList.remove("active");
+        document.querySelector(".products-area-wrapper").classList.remove("gridView");
+        document.querySelector(".products-area-wrapper").classList.add("tableView");
+      });
+      if ($(window).width() < 767) {
+        $("#grid").click()
+      }
+      $("#cerrar,#close-mb").click(function () {
+
+        $.ajax({
+          type: "POST",
+          url: "logout",
+          data: { "token": localStorage.getItem("token") },
+          success: function (data2) {
+            localStorage.clear();
+            console.log("cerraste sesion");
+            window.location.href = "/home"
+          }
         })
+      })
 
-        function changestatus(e){
-            var id_propiedad = e.getAttribute("data-propiedadid");
-            var estado = e.getAttribute("data-estado");
-            var newestado = 0
-            var estadostr = ""
-            var stado = ""
-            
-            if (estado == 1) {
+      function changestatus(e) {
+        var id_propiedad = e.getAttribute("data-propiedadid");
+        var estado = e.getAttribute("data-estado");
+        var newestado = 0
+        var estadostr = ""
+        var stado = ""
 
-                newestado = 0
-                estadostr="No Disponible"
-                stado= " disabled"
-                
-            } else {
-                newestado = 1
-                estadostr="Disponible"
-                stado= " active"
-            }
-            $.ajax({
-                url:"changepropiedadestatus",
-                method:"POST",
-                data:{
-                    estado:newestado,
-                    id_propiedad:id_propiedad,
-                    token:localStorage.getItem("token")
-                  
-                },
-                success: function(data3){
-                    if (data3.status == 0) {
-                        console.log("todomal",data3.mensaje)
-                    } else {
-                        console.log("Funciona")    
-                        e.innerHTML = estadostr  
-                        e.setAttribute("class", "status" + stado);
-                        e.setAttribute("data-estado",newestado)
-                 
-                    }
-                }
-            })
+        if (estado == 1) {
+
+          newestado = 0
+          estadostr = "No Disponible"
+          stado = " disabled"
+
+        } else {
+          newestado = 1
+          estadostr = "Disponible"
+          stado = " active"
         }
-      </script>
+        $.ajax({
+          url: "changepropiedadestatus",
+          method: "POST",
+          data: {
+            estado: newestado,
+            id_propiedad: id_propiedad,
+            token: localStorage.getItem("token")
+
+          },
+          success: function (data3) {
+            if (data3.status == 0) {
+              console.log("todomal", data3.mensaje)
+            } else {
+              console.log("Funciona")
+              e.innerHTML = estadostr
+              e.setAttribute("class", "status" + stado);
+              e.setAttribute("data-estado", newestado)
+
+            }
+          }
+        })
+      }
+      
+      function alert(elElemento){
+
+        Swal.fire({
+        title: '¿Está seguro?',
+        text: "¡No podrás revertir esto!",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si, eliminarlo!',
+        cancelButtonText:'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          var id_propiedad = elElemento.getAttribute("data-propiedadid");
+          $.ajax({
+            url: "changepropiedadestatus",
+            method: "POST",
+            data: {
+              estado: 2,
+              id_propiedad: id_propiedad,
+              token: localStorage.getItem("token")
+            },
+            success: function (data){
+              console.log("funca")
+              Swal.fire(
+                'Eliminado!',
+                'Su propiedad ha sido elimiado con exito.',
+                'success'
+              ).then((result) => {
+              window.location.href = "/dashboard"
+              })
+            }
+          })
+        }
+      })
+      }
+     
+    </script>
     </body>
+    <% } else { %>
+
+  <script>
+    if(localStorage.getItem("token")){
+      opendashboard()
+    } else {
+      window.location.href = "/home"
+
+    }
+    
+  </script>
+
     <% } %>
