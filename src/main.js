@@ -6,12 +6,17 @@ const CryptoJS = require("crypto-js");
 const fs = require("fs");
 const path = require("path");
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "html/views"));
-app.use(express.static(__dirname + "/html"));
-app.use(express.static(__dirname + "/file"));
+app.set("views", path.join(__dirname, "views"));
+app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "../file"));
 app.use(bodyParser.urlencoded({ extended: true }));
 const fileUpload = require("express-fileupload");
 app.use(fileUpload());
+
+//Importacion de los endpoints de cada entity
+const homeEndpoints = require("./routes/home")
+const propiedadEndpoints = require("./routes/propiedad")
+const sessionManagerEndpoints = require("./routes/sessionManager")
 
 var mysql = require("mysql");
 const { connect } = require("http2");
@@ -31,6 +36,13 @@ con.connect(function (err) {
 	console.log("Connected!");
 });
 
+//Entity endpoints
+app.use("/propiedad", propiedadEndpoints)
+app.use("/home", homeEndpoints)
+
+//Archivos estaticos
+app.use(express.static(path.join(__dirname, "public")));
+
 function managesesion(result, token) {
 	if (sessionLog["id" + token] == null) {
 
@@ -43,42 +55,7 @@ function managesesion(result, token) {
 	sessionLog["id" + token].email = result[0].email;
 }
 
-function obtenerpropiedades(_limit, id_usuario = null, estado = null) {
-	return new Promise(resolve => {
-		var limit = "";
 
-		if (typeof _limit == "undefined") {
-			_limit == null
-		}
-
-		var filtrousuario = ""
-
-		if (id_usuario != null) {
-		
-			filtrousuario = " AND id_usuario = " + id_usuario
-		}
-		var filtroestado = ""
-
-		if (estado != null) {
-			filtroestado = " AND estado = " + estado
-		}
-
-		if (_limit != null) {
-			limit = " LIMIT " + _limit;
-		}
-		con.query(
-			"SELECT propiedad.*,tipopropiedad.descripcion as dcp,(SELECT ruta FROM multimedia WHERE multimedia.id_propiedad = propiedad.id_propiedad)AS img FROM propiedad INNER JOIN tipopropiedad ON propiedad.id_tipopropiedad = tipopropiedad.id_tipopropiedad WHERE estado != 2 " + filtroestado + filtrousuario +
-			limit,
-			function (err, result) {
-				if (err != null) {
-					console.log(err);
-					resolve(0)
-				} else {
-					resolve(result)
-				}
-			});
-	})
-}
 
 app.post("/register", function (req, res) {
 	let tipo = req.body.tipo;
@@ -329,19 +306,7 @@ app.post("/changepropiedadestatus", function (req, res) {
 	}
 })
 
-app.get("/home", async function (req, res) {
 
-	var result = await obtenerpropiedades(req.query.limit, null, 1)
-	if (result == 0) {
-
-		res.send({ status: 0 });
-
-	} else {
-		res.render("index", {
-			rows: result,
-		});
-	}
-});
 
 app.get("/dashboard", async function (req, res) {
 
