@@ -66,24 +66,32 @@
                                                 class="overflow-hidden rounded-md drop-shadow-[0px_0px_5px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center transition-all duration-300 hover:-translate-y-[10px]">
                                                 <div class="relative">
                                                     <a href="#" class="block">
-                                                        <% if (rows[i].img == null || rows[i].img == ""){ %>
-                                                        <img alt="banana" src="https://thumbs.dreamstime.com/b/casa-de-vuelo-en-la-ilustraci%C3%B3n-del-vector-esbozo-nubes-las-dibujo-grabado-vectorial-dise%C3%B1o-impresi%C3%B3n-ropa-camisa-imitaci%C3%B3n-195250717.jpg" class="w-full h-full" loading="lazy" width="370" height="266" >
-                                                        <%  }else{ %>
-                                                        <img src="<%= rows[i].img %>" class="w-full h-full" loading="lazy" width="370" height="266" >
-                                                        <% } %>
+                                                        <% if (rows[i].img==null || rows[i].img=="" ){ %>
+                                                            <img alt="banana"
+                                                                src="https://thumbs.dreamstime.com/b/casa-de-vuelo-en-la-ilustraci%C3%B3n-del-vector-esbozo-nubes-las-dibujo-grabado-vectorial-dise%C3%B1o-impresi%C3%B3n-ropa-camisa-imitaci%C3%B3n-195250717.jpg"
+                                                                class="w-full h-full" loading="lazy" width="370"
+                                                                height="266">
+                                                            <% }else{ %>
+                                                                <img src="<%= rows[i].img %>" class="w-full h-full"
+                                                                    loading="lazy" width="370" height="266">
+                                                                <% } %>
                                                     </a>
                                                     <div class="flex flex-wrap flex-col absolute top-5 right-5">
                                                         <button
                                                             class="flex flex-wrap items-center bg-[rgb(11,44,61,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs">
-                                                            <img class="mr-1" src="assets/images/icon/camera.png"
+                                                            <img class="mr-1" src="/images/icon/camera.png"
                                                                 loading="lazy" width="13" height="10"
                                                                 alt="camera icon">07</button>
                                                         <button
                                                             class="flex flex-wrap items-center bg-[rgb(11,44,61,0.8)] p-[5px] rounded-[2px] text-white text-xs">
-                                                            <img class="mr-1" src="assets/images/icon/video.png" loading="lazy" width="14" height="10" alt="camera icon">08</button>
+                                                            <img class="mr-1" src="/images/icon/video.png"
+                                                                loading="lazy" width="14" height="10"
+                                                                alt="camera icon">08</button>
                                                     </div>
                                                     <span
-                                                        class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-primary leading-none text-[14px] font-normal capitalize"><%= rows[i].tipo_publicacion %></span>
+                                                        class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-primary leading-none text-[14px] font-normal capitalize">
+                                                        <%= rows[i].tipo_publicacion %>
+                                                    </span>
                                                 </div>
 
                                                 <div class="py-[20px] px-[20px] text-left">
@@ -169,12 +177,14 @@
                                                     <ul>
                                                         <li class="flex flex-wrap items-center justify-between"
                                                             id="precio">
-                                                            <span class="font-lora text-base text-primary leading-none font-medium">Precio:
+                                                            <span
+                                                                class="font-lora text-base text-primary leading-none font-medium">Precio:
                                                                 <%= rows[i].precio %> GS.
                                                             </span>
 
                                                             <span class="flex flex-wrap items-center">
-                                                                <button class="mr-[15px] text-[#9D9C9C] hover:text-secondary"
+                                                                <button
+                                                                    class="mr-[15px] text-[#9D9C9C] hover:text-secondary"
                                                                     aria-label="svg">
                                                                     <svg width="16" height="16" viewBox="0 0 16 16"
                                                                         fill="currentColor"
@@ -215,7 +225,7 @@
                                             </div>
                                         </div>
                                         <% } %>
-                                <% } %>
+                                            <% } %>
                             </div>
                             <!-- Add Pagination -->
                             <div class="swiper-pagination"></div>
@@ -230,7 +240,7 @@
     <!-- Footer Start -->
     <footer
         class="footer bg-[#EEEEEE] pt-[80px] lg:pt-[120px] pb-30 md:pb-[80px] lg:pb-[110px] font-normal bg-no-repeat"
-        style="background-image: url('assets/images/footer/pattern.png');">
+        style="background-image: url('/images/footer/pattern.png');">
     </footer>
     <!-- Footer End -->
 
@@ -245,20 +255,7 @@
     </div>
 
 
-    <!-- JS Vendor, Plugins & Activation Script Files -->
-
-    <!-- Vendors JS -->
-    <script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
-    <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
-    <script src="assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
-    <!-- Plugins JS -->
-    <script src="assets/js/plugins/swiper-bundle.min.js"></script>
-    <script src="assets/js/plugins/popper.min.js"></script>
-    <script src="assets/js/plugins/jquery.ajaxchimp.min.js"></script>
-    <script src="assets/js/plugins/parallax.min.js"></script>
-    <script src="assets/js/plugins/jquery.nice-select.min.js"></script>
-
-    <!-- Activation JS -->
-    <script src="assets/js/main.js"></script>
     </body>
-    </html>
+    <%- include("elements/footer.ejs") %>
+
+        </html>

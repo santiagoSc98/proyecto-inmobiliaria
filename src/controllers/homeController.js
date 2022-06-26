@@ -1,24 +1,21 @@
 const controller = {};
 const path = require("path");
-const mysql = require("mysql")
-
-var con = mysql.createConnection({
-	host: "127.0.0.1",
-	user: "root",
-	password: "",
-	database: "inmobiliaria",
-});
 
 controller.cargarVistaHome = function (req, res) {
-    // var result = await obtenerpropiedades(req.query.limit, null, 1)
-    con.query("Select * from propiedad", function(err, result) {
+    req.getConnection((err, dbConnection) => {
         if (err != null) {
             console.log(err);
         } else {
-            res.render("index", {
-                rows: result,
-            });
-        }    
+            dbConnection.query("Select * from propiedad", function (err, result) {
+                if (err != null) {
+                    console.log(err);
+                } else {
+                    res.render("index", {
+                        rows: result,
+                    });
+                }
+            })
+        }
     })
 }
 
