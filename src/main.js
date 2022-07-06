@@ -18,13 +18,10 @@ app.use(fileUpload());
 
 //Importacion de los routes
 const homeEndpoints = require("./routes/home")
-const propiedadEndpoints = require("./routes/propiedad")
-const sessionManagerEndpoints = require("./routes/sessionManager")
 
 var sessionLog = [];
 
 //Endpoints
-app.use("/propiedad", propiedadEndpoints)
 app.use("/home", homeEndpoints)
 
 app.listen(PORT, function () {
