@@ -1,22 +1,12 @@
 const controller = {};
+const stateService = require("../services/stateService")
 const path = require("path");
 
 controller.cargarVistaHome = function (req, res) {
-    req.getConnection((err, dbConnection) => {
-        if (err != null) {
-            console.log(err);
-        } else {
-            dbConnection.query("Select * from propiedad", function (err, result) {
-                if (err != null) {
-                    console.log(err);
-                } else {
-                    res.render("index", {
-                        rows: result,
-                    });
-                }
-            })
-        }
-    })
+    let allStates = stateService.list()
+    res.render("index", {
+        rows: allStates,
+    });
 }
 
 // function obtenerpropiedades(_limit, id_usuario = null, estado = null) {

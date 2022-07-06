@@ -6,9 +6,6 @@ const CryptoJS = require("crypto-js");
 const fs = require("fs");
 const path = require("path")
 
-var mysql = require("mysql");
-const dbConnection = require("express-myconnection")
-
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 
@@ -19,23 +16,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const fileUpload = require("express-fileupload");
 app.use(fileUpload());
 
-//Importacion de los endpoints de cada entity
+//Importacion de los routes
 const homeEndpoints = require("./routes/home")
 const propiedadEndpoints = require("./routes/propiedad")
 const sessionManagerEndpoints = require("./routes/sessionManager")
 
-console.log(path.join(__dirname, "public"));
-app.use(dbConnection(mysql, {
-	host: "127.0.0.1",
-	user: "root",
-	password: "",
-	port: "3306",
-	database: "inmobiliaria"
-}, "single"))
-
 var sessionLog = [];
 
-//Entity endpoints
+//Endpoints
 app.use("/propiedad", propiedadEndpoints)
 app.use("/home", homeEndpoints)
 
