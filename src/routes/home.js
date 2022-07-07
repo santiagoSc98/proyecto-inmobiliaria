@@ -3,6 +3,6 @@ const router = express.Router();
 
 const homeController = require("../controllers/homeController"); 
 
-router.get("/vistahome", homeController.cargarVistaHome); 
+router.get("/", homeController.renderView); 
 
 module.exports = router;
