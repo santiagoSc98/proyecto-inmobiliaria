@@ -2,11 +2,16 @@ const controller = {};
 const stateService = require("../services/stateService")
 const path = require("path");
 
-controller.cargarVistaHome = function (req, res) {
-    let allStates = stateService.list()
-    res.render("index", {
-        rows: allStates,
-    });
+controller.renderView = async function (req, res) {
+    try {
+        let allStates = await stateService.list()
+        console.log(allStates);
+        res.render("index", {
+            rows: allStates,
+        });
+    } catch (error) {
+        return error
+    }
 }
 
 // function obtenerpropiedades(_limit, id_usuario = null, estado = null) {
