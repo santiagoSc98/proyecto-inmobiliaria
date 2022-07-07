@@ -47,9 +47,9 @@
             <div class="grid grid-cols-12">
                 <div class="col-span-12">
                     <div class="flex flex-col items-center justify-center mb-[50px]">
-                        <span class="text-secondary text-tiny inline-block mb-2">Best Choice</span>
-                        <h2 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium">
-                            Popular Properties<span class="text-secondary">.</span></h2>
+                        <span class="text-secondary text-tiny inline-block mb-2"> ¿Mejor Elección? </span>
+                        <h2 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl      font-medium">
+                            Las más Populares<span class="text-secondary">.</span></h2>
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                                             <div
                                                 class="overflow-hidden rounded-md drop-shadow-[0px_0px_5px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center transition-all duration-300 hover:-translate-y-[10px]">
                                                 <div class="relative">
-                                                    <a href="#" class="block">
+                                                    <a href="propiedad?id=<%= rows[i].id_propiedad%>" class="block">
                                                         <% if (rows[i].img == null || rows[i].img == ""){ %>
                                                         <img alt="banana" src="https://thumbs.dreamstime.com/b/casa-de-vuelo-en-la-ilustraci%C3%B3n-del-vector-esbozo-nubes-las-dibujo-grabado-vectorial-dise%C3%B1o-impresi%C3%B3n-ropa-camisa-imitaci%C3%B3n-195250717.jpg" class="w-full h-full" loading="lazy" width="370" height="266" >
                                                         <%  }else{ %>
@@ -87,12 +87,12 @@
                                                 </div>
 
                                                 <div class="py-[20px] px-[20px] text-left">
-                                                    <h3><a href="#" id="nombre01"
+                                                    <h3><a id="nombre01"
                                                             class="font-lora leading-tight text-[22px] xl:text-[26px] text-primary hover:text-secondary transition-all font-medium">
                                                             <%= rows[i].nombre %>
                                                         </a>
                                                     </h3>
-                                                    <h4><a href="#" id="direccion01"
+                                                    <h4><a  id="direccion01"
                                                             class="font-light text-[14px] leading-[1.75] underline">
                                                             <%= rows[i].direccion %> - <%= rows[i].ciudad %>
                                                         </a></h4>
@@ -229,8 +229,7 @@
 
     <!-- Footer Start -->
     <footer
-        class="footer bg-[#EEEEEE] pt-[80px] lg:pt-[120px] pb-30 md:pb-[80px] lg:pb-[110px] font-normal bg-no-repeat"
-        style="background-image: url('assets/images/footer/pattern.png');">
+        class="pt-[80px] lg:pt-[120px] pb-30 md:pb-[80px] lg:pb-[110px] font-normal bg-no-repeat">
     </footer>
     <!-- Footer End -->
 

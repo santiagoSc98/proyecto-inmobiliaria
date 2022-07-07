@@ -21,14 +21,14 @@
 	<div class="pt-[80px] lg:pt-[120px] add-properties-form-select">
 		<div class="container">
 			<form action='/newpropiedad' method="POST" enctype="multipart/form-data" id="newprop">
-				<input type="hidden" name="token" value="javascript:localStorage.getItem('token')">
+				
 				<div class="grid grid-cols-12 gap-x-[30px]">
 
 					<div class="mb-[45px] col-span-12 md:col-span-8">
 						<label class="mb-[20px] font-lora text-[20px] font-medium leading-none block text-primary"
 							for="property-title"> Titulo de la Propiedad</label>
 						<input id="property-title"
-							class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] h-[60px] "
+							class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[10px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] h-[60px] "
 							type="text" name="nombre" placeholder="Titulo de la Propiedad">
 					</div>
 
@@ -36,7 +36,7 @@
 						<label class="mb-[20px] font-lora text-[20px] font-medium leading-none block text-primary"
 							for="Price">Precio</label>
 						<input id="number"
-							class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] h-[60px] "
+							class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[10px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] h-[60px] "
 							type="text" name="precio" placeholder="Precio">
 					</div>
 
@@ -44,7 +44,7 @@
 						<label class="mb-[20px] font-lora text-[20px] font-medium leading-none block text-primary"
 							for="textarea">Descripción de la Propiedad</label>
 						<textarea
-							class="h-[196px] font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] "
+							class="h-[196px] font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[10px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] "
 							name="descripcion" id="textarea" cols="30" rows="10"
 							placeholder="Escribe tu texto aquí"></textarea>
 					</div>
@@ -58,15 +58,15 @@
 							for="PropertyType1">Ubicación</label>
 
 						<input id="Location"
-							class="mb-[45px]  font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] h-[60px] "
+							class="mb-[45px]  font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[10px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] h-[60px] "
 							type="text" name="direccion" placeholder="Dirección">
 
 						<input
-							class="mb-[45px]  font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] h-[60px] "
+							class="mb-[45px]  font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[10px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] h-[60px] "
 							name="departamento" type="text" placeholder="Departamento">
 
 						<input
-							class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] h-[60px] "
+							class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[10px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] h-[60px] "
 							name="ciudad" type="text" placeholder="Ciudad">
 
 					</div>
@@ -144,30 +144,30 @@
 				<div class="grid grid-cols-12 gap-x-[30px]">
 					<div class="mb-[45px] col-span-12 md:col-span-6">
 						<input id="Propertyinfo1"
-							class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] h-[60px] "
+							class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[10px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] h-[60px] "
 							type="text" name="superficieM2" placeholder="Area(m)">
 					</div>
 
 					<div class="mb-[45px] col-span-12 md:col-span-6">
 						<input
-							class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] h-[60px] "
+							class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[10px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] h-[60px] "
 							name="nrohabitaciones" type="text" placeholder="Numero de Habitaciones">
 					</div>
 
 					<div class="mb-[45px] col-span-12 md:col-span-6">
 						<input
-							class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] h-[60px] "
+							class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[10px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] h-[60px] "
 							name="nrobanos" type="text" placeholder="Numero de baños">
 					</div>
 
 					<div class="mb-[45px] col-span-12 md:col-span-6">
 						<input
-							class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] h-[60px] "
+							class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[10px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] h-[60px] "
 							name="nrogarage" type="text" placeholder="Numero de Garaje">
 					</div>
 
 				</div>
-				<input type="hidden" name="token" id="token">
+				<input  type="hidden" name="token" id="token"  value="javascript:localStorage.getItem('token')">
 
 				<div class="grid grid-cols-12 gap-x-[30px]">
 					<div class="mb-[45px] col-span-12 md:col-span-6">
@@ -175,10 +175,9 @@
 							class="mb-[20px] font-lora text-[20px] font-medium leading-none block text-primary">Añadir
 							Imagen</label>
 						<div
-							class="py-[35px] px-[15px] flex flex-wrap items-center justify-center text-center border border-[#1B2D40] border-opacity-60 rounded-[8px]">
+							class="py-[35px] px-[15px] flex flex-wrap items-center justify-center text-center border border-[#1B2D40] border-opacity-60 rounded-[8px] grid">
 							<div class="relative">
-								<input class="absolute inset-0 z-[0] opacity-0 w-full" type="file" name="file"
-									id="upload">
+								<input multiple class="absolute inset-0 z-[0] opacity-0 w-full" data-image-uploader  type="file"   capture="camera" multiple name="file" id="upload" style="z-index:99 ;">
 								<label id="file"
 									class="before:rounded-md before:block before:absolute before:left-auto before:right-0 before:inset-y-0 before:-z-[1] before:bg-secondary before:w-0 hover:before:w-full hover:before:left-0 hover:before:right-auto before:transition-all leading-none px-[30px] py-[12px] capitalize font-medium text-white text-[14px] xl:text-[16px] relative after:block after:absolute after:inset-0 after:-z-[2] after:bg-primary after:rounded-md after:transition-all flex flex-wrap items-center justify-center cursor-pointer">
 									<svg class="mr-[5px]" width="22" height="22" viewBox="0 0 22 22" fill="none"
@@ -186,21 +185,22 @@
 										<path
 											d="M21.5853 8.39666C21.4868 8.25357 21.3542 8.1373 21.1995 8.05834C21.0448 7.97938 20.8729 7.94023 20.6992 7.94444H6.82698C6.53428 7.95684 6.25076 8.05025 6.00799 8.21425C5.76523 8.37825 5.57275 8.60641 5.45198 8.87333C5.44998 8.90181 5.44998 8.9304 5.45198 8.95888L3.66753 15.2778V4.27777H7.63365L9.22865 6.47166C9.28554 6.54951 9.36004 6.6128 9.44607 6.65635C9.53211 6.69989 9.62722 6.72246 9.72365 6.72221H19.5564C19.5564 6.39806 19.4277 6.08718 19.1984 5.85797C18.9692 5.62876 18.6584 5.49999 18.3342 5.49999H10.0353L8.62365 3.55666C8.50987 3.40095 8.36085 3.27438 8.18879 3.18728C8.01673 3.10019 7.8265 3.05505 7.63365 3.05555H3.66753C3.34338 3.05555 3.0325 3.18432 2.80329 3.41353C2.57408 3.64274 2.44531 3.95361 2.44531 4.27777V18.1439C2.45485 18.3638 2.55062 18.5711 2.71189 18.721C2.87316 18.8708 3.08695 18.9511 3.30698 18.9444H18.542C18.6783 18.9499 18.8126 18.9095 18.9234 18.8297C19.0341 18.75 19.115 18.6355 19.1531 18.5044L21.7136 9.27666C21.7614 9.12999 21.7747 8.97428 21.7524 8.82164C21.7302 8.66901 21.673 8.52357 21.5853 8.39666ZM18.0592 17.7222H4.21753L6.58865 9.28277C6.64651 9.20822 6.72869 9.15632 6.82087 9.1361H20.467L18.0592 17.7222Z"
 											fill="#FAFAFA"></path>
-									</svg> Añadir Imagen</label>
-
+									</svg> Añadir Imagen</label>	
 							</div>
+							<div data-image-uploads class="images-holder"></div>
 						</div>
+						
 					</div>
+					
 
 					<div class="mb-[45px] col-span-12 md:col-span-6">
 						<label
 							class="mb-[20px] font-lora text-[20px] font-medium leading-none block text-primary">Añadir
 							Video</label>
 						<div
-							class="py-[35px] px-[15px] flex flex-wrap items-center justify-center text-center border border-[#1B2D40] border-opacity-60 rounded-[8px]">
+							class="py-[35px] px-[15px] flex flex-wrap items-center justify-center text-center border border-[#1B2D40] border-opacity-60 rounded-[8px] grid">
 							<div class="relative">
-								<input class="absolute inset-0 z-[0] opacity-0 w-full" type="file" name="Videos"
-									id="Videos">
+								<input class="absolute inset-0 z-[0] opacity-0 w-full" type="file" name="filevideo" style="z-index:99 ;">
 								<label for="Videos"
 									class="before:rounded-md before:block before:absolute before:left-auto before:right-0 before:inset-y-0 before:-z-[1] before:bg-secondary before:w-0 hover:before:w-full hover:before:left-0 hover:before:right-auto before:transition-all leading-none px-[30px] py-[12px] capitalize font-medium text-white text-[14px] xl:text-[16px] relative after:block after:absolute after:inset-0 after:-z-[2] after:bg-primary after:rounded-md after:transition-all flex flex-wrap items-center justify-center cursor-pointer">
 
@@ -210,13 +210,11 @@
 											d="M21.5853 8.39666C21.4868 8.25357 21.3542 8.1373 21.1995 8.05834C21.0448 7.97938 20.8729 7.94023 20.6992 7.94444H6.82698C6.53428 7.95684 6.25076 8.05025 6.00799 8.21425C5.76523 8.37825 5.57275 8.60641 5.45198 8.87333C5.44998 8.90181 5.44998 8.9304 5.45198 8.95888L3.66753 15.2778V4.27777H7.63365L9.22865 6.47166C9.28554 6.54951 9.36004 6.6128 9.44607 6.65635C9.53211 6.69989 9.62722 6.72246 9.72365 6.72221H19.5564C19.5564 6.39806 19.4277 6.08718 19.1984 5.85797C18.9692 5.62876 18.6584 5.49999 18.3342 5.49999H10.0353L8.62365 3.55666C8.50987 3.40095 8.36085 3.27438 8.18879 3.18728C8.01673 3.10019 7.8265 3.05505 7.63365 3.05555H3.66753C3.34338 3.05555 3.0325 3.18432 2.80329 3.41353C2.57408 3.64274 2.44531 3.95361 2.44531 4.27777V18.1439C2.45485 18.3638 2.55062 18.5711 2.71189 18.721C2.87316 18.8708 3.08695 18.9511 3.30698 18.9444H18.542C18.6783 18.9499 18.8126 18.9095 18.9234 18.8297C19.0341 18.75 19.115 18.6355 19.1531 18.5044L21.7136 9.27666C21.7614 9.12999 21.7747 8.97428 21.7524 8.82164C21.7302 8.66901 21.673 8.52357 21.5853 8.39666ZM18.0592 17.7222H4.21753L6.58865 9.28277C6.64651 9.20822 6.72869 9.15632 6.82087 9.1361H20.467L18.0592 17.7222Z"
 											fill="#FAFAFA"></path>
 									</svg> Añadir Video
-
 								</label>
-
 							</div>
-
-
+							<div class="images-holder"></div>
 						</div>
+						
 					</div>
 				</div>
 
@@ -238,8 +236,7 @@
 
 	<!-- Footer Start -->
 	<footer
-		class="footer bg-[#EEEEEE] pt-[80px] lg:pt-[120px] pb-30 md:pb-[80px] lg:pb-[110px] font-normal bg-no-repeat"
-		style="background-image: url('assets/images/footer/pattern.png');">
+		class=" pt-[80px] lg:pt-[120px] pb-30 md:pb-[80px] lg:pb-[110px] font-normal bg-no-repeat">
 	</footer>
 	<!-- Footer End -->
 	<a id="scrollUp"
@@ -270,6 +267,7 @@
 	<script src="assets/js/plugins/jquery.waypoints.js"></script>
 	<script src="assets/js/plugins/jquery.counterup.min.js"></script>
 	<script src="assets/js/plugins/jquery.nice-select.min.js"></script>
+	<script src="assets/js/uploadfile.js"></script>
 
 	<!-- Activation JS -->
 	<script src="assets/js/main.js"></script>
@@ -280,16 +278,19 @@
 			$("#token").val(localStorage.getItem("token"))
 		})
 
-		$(document).ajaxComplete(function () {
-			console.log("listo");
+		$(document).ajaxComplete(function (e) {
+			console.log("Ajax listo",e);
 
 		})
 		$("#newprop").submit(function (e) {
 			console.log("hoa new pro")
+			console.log("tokeeeeen",localStorage.getItem('token'))
 			if (localStorage.getItem("token") == null) {
 				e.preventDefault()
 				document.getElementById("ingresar").click();
 				document.getElementById("showregister").click();
+			} else{
+				$('#token').val(localStorage.getItem('token'))
 			}
 			console.log("eeeeee", e)
 
@@ -310,6 +311,11 @@
 				});
 			}
 		});
+
+		$( "header" ).removeClass( "is-sticky" )
+
+			
+		
 	</script>
 	<style>
 		a.transition-all.hover\:text-secondary {
@@ -322,6 +328,12 @@
 
 		.offcanvas-menu a.transition-all.hover\:text-secondary {
 			color: black;
+		}
+		.block img {
+			filter: invert(1) hue-rotate(172deg);
+		}
+		.is-sticky img{
+			filter: none!important;
 		}
 	</style>
 

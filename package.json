@@ -17,7 +17,9 @@
     "mongodb": "^4.6.0",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.16",
-    "sweetalert2": "^11.4.17"
+    "sweetalert2": "^11.4.17",
+    "to": "^0.2.9",
+    "update": "^0.7.4"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -16,6 +16,7 @@ app.use(fileUpload());
 var mysql = require("mysql");
 const { connect } = require("http2");
 const { resolve } = require("path");
+const { allowedNodeEnvironmentFlags } = require("process");
 
 var con = mysql.createConnection({
 	host: "127.0.0.1",
@@ -41,6 +42,9 @@ function managesesion(result, token) {
 	sessionLog["id" + token].id_usuario = result[0].id_usuario;
 	sessionLog["id" + token].nombre = result[0].nombre;
 	sessionLog["id" + token].email = result[0].email;
+	sessionLog["id" + token].id_tipousuario = result[0].id_tipousuario;
+	sessionLog["id" + token].foto = result[0].foto;
+
 }
 
 function obtenerpropiedades(_limit, id_usuario = null, estado = null) {
@@ -67,7 +71,7 @@ function obtenerpropiedades(_limit, id_usuario = null, estado = null) {
 			limit = " LIMIT " + _limit;
 		}
 		con.query(
-			"SELECT propiedad.*,tipopropiedad.descripcion as dcp,(SELECT ruta FROM multimedia WHERE multimedia.id_propiedad = propiedad.id_propiedad)AS img FROM propiedad INNER JOIN tipopropiedad ON propiedad.id_tipopropiedad = tipopropiedad.id_tipopropiedad WHERE estado != 2 " + filtroestado + filtrousuario +
+			"SELECT propiedad.*,tipopropiedad.descripcion as dcp,(SELECT ruta FROM multimedia WHERE multimedia.id_propiedad = propiedad.id_propiedad limit 1)AS img FROM propiedad INNER JOIN tipopropiedad ON propiedad.id_tipopropiedad = tipopropiedad.id_tipopropiedad WHERE estado != 2 " + filtroestado + filtrousuario +
 			limit,
 			function (err, result) {
 				if (err != null) {
@@ -76,7 +80,8 @@ function obtenerpropiedades(_limit, id_usuario = null, estado = null) {
 				} else {
 					resolve(result)
 				}
-			});
+			}
+		);
 	})
 }
 
@@ -125,6 +130,7 @@ app.post("/register", function (req, res) {
 							tmpar0[0].id_usuario = result1.insertId
 							tmpar0[0].nombre = nombre
 							tmpar0[0].email = email
+							tmpar0[0].foto = "none"
 							console.log("tmpar0", tmpar0)
 
 
@@ -214,6 +220,7 @@ app.post("/loginwtoken", function (req, res) {
 });
 
 app.post("/newpropiedad", function (req, res) {
+	console.log("Inicio new propiedad")
 	let token = req.body.token;
 	let descripcion = req.body.descripcion;
 	let direccion = req.body.direccion;
@@ -227,7 +234,7 @@ app.post("/newpropiedad", function (req, res) {
 	let nrogarage = req.body.nrogarage;
 	let tipo = req.body.tipo;
 	let tpublicacion = req.body.tpublicacion;
-	console.log("hola token", token);
+	console.log("holas",token)
 	if (sessionLog["id" + token] != null) {
 		console.log("existe en el sesionlog", sessionLog['id' + token].id_usuario);
 
@@ -268,37 +275,68 @@ app.post("/newpropiedad", function (req, res) {
 
 					// Guardar archivo recibido por Ajax
 
-					let EDFile = req.files.file;
-					var filerute = `./file/Usr${sessionLog["id" + token].id_usuario}/${EDFile.name
-						}`;
-					var id_propiedad = result.insertId;
-
-					EDFile.mv(filerute, (err) => {
-						if (err) {
-							console.log("error al guardar el archivo", err);
-							res.status(0);
-						} else {
-							con.query(
-								"INSERT INTO multimedia (id_propiedad,tipo,ruta) VALUES (?,?,?)",
-								[id_propiedad, "img", filerute],
-								function (err1, result1) {
-									if (err1 != null) {
-										console.log("error en base de dato", err1);
-									} else {
-										console.log("Almacenado ruta en base");
+					function guardarmultimedia(ff){
+						console.log("entro en dad",token)
+						var filerute = `./file/Usr${sessionLog["id" + token].id_usuario}/${ff.name}`;
+						var id_propiedad = result.insertId;
+						ff.mv(filerute, (err) => {
+							if (err) {
+								console.log("error al guardar el archivo", err);
+								res.status(0);
+							} else {
+								con.query(
+									"INSERT INTO multimedia (id_propiedad,tipo,ruta) VALUES (?,?,?)",
+									[id_propiedad, "img", filerute],
+									function (err1, result1) {
+										if (err1 != null) {
+											console.log("error en base de dato", err1);
+										} else {
+											console.log("Almacenado ruta en base");
+										}
 									}
-								}
-							);
-							console.log("se guardo el archivo");
+								);
+								console.log("se guardo el archivo");
+							}
+						});
+					} 
+
+					
+					if (req.files == null) {
+						console.log("Sin imagen")
+					} else {
+						if(req.files.filevideo != null){
+							if (Array.isArray(req.files.file) == true) {
+
+								req.files.filevideo.forEach(cara => guardarmultimedia(cara))
+		
+							} else { 
+		
+								guardarmultimedia(req.files.filevideo)
+								
+							}
 						}
-					});
+						if(req.files.file != null){
+							if (Array.isArray(req.files.file) == true) {
+
+								req.files.file.forEach(cara => guardarmultimedia(cara))
+		
+							} else { 
+		
+								guardarmultimedia(req.files.file)
+								
+							}
+						}
+						
+					}
+					
 					res.status(200);
-					res.redirect("/home");
+					res.redirect("/dashboard");
 				}
 			}
 		);
 	} else {
-		console.log("este pendejo no tiene sesion");
+		res.send({ "status": 0 })
+		console.log("este pendejo no tiene sesion",req.body);
 
 	}
 });
@@ -331,7 +369,7 @@ app.post("/changepropiedadestatus", function (req, res) {
 
 app.get("/home", async function (req, res) {
 
-	var result = await obtenerpropiedades(req.query.limit, null, 1)
+	var result = await obtenerpropiedades(6, null, 1)
 	if (result == 0) {
 
 		res.send({ status: 0 });
@@ -345,29 +383,18 @@ app.get("/home", async function (req, res) {
 
 app.get("/dashboard", async function (req, res) {
 
-		// var token = req.body.token
-		// if (sessionLog["id" + token] != null) {
-		// 	console.log("nombre", sessionLog["id" + token].nombre)
-		// 	var resp = await obtenerpropiedades(null, sessionLog["id" + token].id_usuario)
 			res.render("dashboard", {
-				// sessionLog: sessionLog["id" + token],
 				sessionLog: null,
 				propiedades:null
 			})
-
-		// } else {
-		// 	res.send({ "status": 0 })
-		// }
-		// console.log("hola", token)
 	
-
 })
 
 app.post("/dashboard", async function (req, res) {
 
 	var token = req.body.token
 	if (sessionLog["id" + token] != null) {
-		console.log("nombre", sessionLog["id" + token].nombre)
+		
 		var resp = await obtenerpropiedades(null, sessionLog["id" + token].id_usuario)
 		res.render("dashboard", {
 			sessionLog: sessionLog["id" + token],
@@ -377,14 +404,304 @@ app.post("/dashboard", async function (req, res) {
 	} else {
 		res.send({ "status": 0 })
 	}
-	console.log("hola", token)
 
+})
 
+app.post("/editarpropiedad",function(req,res){
+	
+	console.log("id",req.body.token)
+
+	function guardarmultimedia(ff,req){
+	var	token = req.body.token 
+		console.log("entro en guardar multimedia",token)
+		var filerute = `./file/Usr${sessionLog["id" + token].id_usuario}/${ff.name}`;
+		var id_propiedad = req.body.id_propiedad;
+		
+		try {
+			var files = fs.readFileSync(
+				"file/Usr" + sessionLog["id" + token].id_usuario
+			);
+		} catch (err) {
+			if (err.code === "ENOENT") {
+				console.log("No existe la carperta");
+				fs.mkdirSync("file/Usr" + sessionLog["id" + token].id_usuario);
+			}
+		}
+		
+		ff.mv(filerute, (err) => {
+			if (err) {
+				console.log("error al guardar el archivo", err);
+				res.status(0);
+			} else {
+				con.query(
+					"INSERT INTO multimedia (id_propiedad,tipo,ruta) VALUES (?,?,?)",
+					[id_propiedad, "img", filerute],
+					function (err1, result1) {
+						if (err1 != null) {
+							console.log("error en base de dato", err1);
+						} else {
+							console.log("Almacenado ruta en base");
+						}
+					}
+				);
+				console.log("se guardo el archivo");
+			}
+		});
+	} 
+
+	
+	if (req.files == null) {
+		console.log("Sin imagen")
+	} else {
+	
+		if (Array.isArray(req.files.file) == true) {
+			
+			req.files.file.forEach(file => guardarmultimedia(file,req))
+
+		} else { 
+
+			guardarmultimedia(req.files.file,req)
+			
+		}
+	}
+
+	con.query(
+		"UPDATE propiedad SET descripcion = ?, direccion = ?, ciudad = ?, nombre = ?, departamento = ? , precio = ?, superficieM2 = ?, nrohabitaciones = ?, nrobaños = ?, nrogarage = ?  WHERE id_propiedad = ? ",
+		[req.body.descripcion, req.body.direccion,req.body.ciudad,req.body.nombre,req.body.departamento,req.body.precio,req.body.superficieM2,req.body.nrohabitaciones,req.body.nrobanos,req.body.nrogarage,req.body.id_propiedad],
+		function (err, result) {
+			if (err != null) {
+				console.log("error", err)
+				res.send({ "status": 0, "mensaje": err })
+			} else {
+				console.log("salio bien editar",req.body.id_propiedad) 
+				res.redirect("/dashboard")
+
+			}
+		}
+	);
+
+})
+
+app.post("/getperfil",function(req,res){
+	token = req.body.token
+
+	if (sessionLog["id" + token] != null) {
+		
+		var id_usuario = sessionLog["id" + token].id_usuario
+
+		con.query(
+			"SELECT * FROM usuario WHERE id_usuario = ?", [id_usuario],
+			function (err, result) {
+				if (err != null) {
+					
+					res.send({ "status": 0})
+					
+				} else {
+					
+					res.send({ "status": 200,"data":result[0]})
+				}
+			}
+		);
+	}
+})
+
+app.post("/editarperfil",function(req,res){
+
+	var token = req.body.token
+	console.log("entro en editar perfil",token)
+	
+	if (sessionLog["id" + token] != null) {
+		var id_usuario = sessionLog["id" + token].id_usuario
+		
+		console.log("entro y hay id",id_usuario)
+		var telef = null
+		if(req.body.telefono != ''){
+			telef = req.body.telefono
+		}
+		if (req.body.nombre == null) {
+			console.log("no existe parametros")
+		} else{
+			con.query(
+				"UPDATE usuario SET nombre = ?,telefono = ?, direccion = ?, email = ?, documentoidentificador = ?  WHERE id_usuario = ? ",
+				[req.body.nombre,telef,req.body.direccion,req.body.email,req.body.documentoidentificador,id_usuario],
+				function (err, result) {
+					if (err != null) {
+						console.log("error", err)
+						res.send({ "status": 0, "mensaje": err })
+					} else {
+
+						try {
+							var files = fs.readFileSync(
+								"file/Usr" + sessionLog["id" + token].id_usuario
+							);
+						} catch (err) {
+							if (err.code === "ENOENT") {
+								console.log("No existe la carperta");
+								fs.mkdirSync("file/Usr" + sessionLog["id" + token].id_usuario);
+							}
+						}
+	
+						// Guardar archivo recibido por Ajax
+	
+						function guardarmultimedia(archivo){
+							console.log("entro en dad",token)
+							var filerute = `./file/Usr${sessionLog["id" + token].id_usuario}/${archivo.name}`;
+							var id_propiedad = result.insertId;
+							archivo.mv(filerute, (err) => {
+								if (err) {
+									console.log("error al guardar el archivo", err);
+									res.status(0);
+								} else {
+									con.query(
+										"UPDATE usuario SET foto = ? WHERE id_usuario = ?",
+										[filerute, id_usuario],
+										function (err1, result1) {
+											if (err1 != null) {
+												console.log("error en base de dato", err1);
+											} else {
+												console.log("Almacenado ruta en base");
+												sessionLog["id" + token].foto = filerute
+											}
+										}
+									);
+									console.log("se guardo el archivo");
+								}
+							});
+						} 
+	
+						
+						if (req.files == null) {
+							console.log("Sin imagen")
+						} else {
+						
+							if (Array.isArray(req.files.file) == true) {
+	
+							
+								req.files.file.forEach(cara => guardarmultimedia(cara))
+		
+							} else { 
+		
+								guardarmultimedia(req.files.file)
+								
+							}
+						}
+						
+						res.status(200);
+						res.redirect("/dashboard");
+						
+					}
+				}
+			);
+		}
+
+	} else {
+		 console.log("fallecio token")
+	}
 })
 
 app.get("/add", function (req, res) {
 	res.render(__dirname + "/html/views/add");
 });
+
+app.get("/propiedad", function (req, res) {
+	console.log("idpropiedad",req.query.id)
+
+
+	if (req.query.id == null || req.query.id == "" ) {
+		
+		console.log("No vino id")
+		res.redirect("home")
+
+	} else {
+		con.query(
+			"SELECT propiedad.*,tipopropiedad.descripcion as descr FROM propiedad INNER JOIN tipopropiedad ON propiedad.id_tipopropiedad = tipopropiedad.id_tipopropiedad WHERE id_propiedad = ?", [req.query.id],
+			function (err, result) {
+				if (err != null) {
+					
+					res.send({ "status": 0})
+					
+				} else {
+					
+					res.render("propiedad", {
+						propiedad: result[0]
+					})
+
+				}
+			}
+		);
+		
+	}
+
+	
+});
+ 
+app.post("/edit",function(req,res){
+
+	var token = req.body.token
+	var id_propiedad = req.body.id_propiedad
+	if (sessionLog["id" + token] != null) {
+		con.query("Select * FROM propiedad WHERE id_propiedad = ?",[id_propiedad],
+			function(err,resp){
+				if (err != null) {
+					console.log("error", err)
+					res.send({ "status": 0, "mensaje": err })
+				} else {
+					 console.log("salio bien edit",resp)
+					res.render(__dirname + "/html/views/edit", {
+						sessionLog: sessionLog["id" + token],
+						propiedad: resp
+					})
+				}
+			}
+		)
+	} else {
+		res.send({ "status": 0 })
+	}
+
+})
+
+app.get("/imgpropiedad",function(req,res){
+	console.log("entro img propiedades",req.query.id)
+	if (req.query.id == null || req.query.id == "") {
+		console.log("nos hakean")
+	} else {
+		if(req.query.delete != null && req.query.delete != "" && req.query.delete == "true" ){
+			// console.log("crsutacio","DELETE FROM multimedia WHERE ruta = ?", req.query.id )
+			
+			con.query(
+				"DELETE FROM multimedia WHERE ruta = ?", [req.query.id],
+				function (err, result) {
+					if (err != null) {
+						
+						res.send({ "status": 0})
+						
+					} else {
+						
+						res.send({ "status": 200,"data":"todo bien"})
+						
+					}
+				}
+			);
+		} else {
+			con.query(
+				"SELECT ruta FROM multimedia WHERE id_propiedad = ?", [req.query.id],
+				function (err, result) {
+					if (err != null) {
+						
+						res.send({ "status": 0})
+						
+					} else {
+						
+						res.send({ "status": 200,"data":result})
+					}
+				}
+			);
+		}
+		
+		
+	}
+	
+})
 
 app.listen(PORT, function () {
 	console.log(`App is running on port: ${PORT}`);

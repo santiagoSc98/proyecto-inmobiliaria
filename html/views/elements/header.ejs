@@ -23,22 +23,19 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
     <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
-
 </head>
 
 
 <body class="font-karla text-body text-tiny">
     <div class="overflow-hidden">
      
-        <header id="sticky-header" class="absolute left-0 top-[15px] lg:top-[30px] xl:top-[45px] w-full z-10">
+        <header id="sticky-header" class="absolute left-0 top-[15px] lg:top-[30px] xl:top-[45px] w-full z-10 is-sticky">
             <div class="container">
                 <div class="grid grid-cols-12">
                     <div class="col-span-12">
                         <div class="flex flex-wrap items-center justify-between">
                             <a href="/home" class="block" style="font-size: 40px;">
-                                CR7
+                               <img src="./assets/images/logo.png" width="100">
                             </a>
                             <nav class="flex flex-wrap items-center">
                                 <ul class="hidden lg:flex flex-wrap items-center font-lora text-[16px] xl:text-[18px] leading-none text-black">
@@ -78,9 +75,9 @@
                                 
 
                                 <div class="relative group" id="p-nologin">
-                                    <a href="#" class="before:rounded-md before:block before:absolute before:left-auto before:right-0 before:inset-y-0 before:-z-[1] before:bg-secondary before:w-0 hover:before:w-full hover:before:left-0 hover:before:right-auto before:transition-all leading-none px-[20px] py-[15px] capitalize font-medium text-white hidden sm:block text-[14px] xl:text-[16px] relative after:block after:absolute after:inset-0 after:-z-[2] after:bg-primary after:rounded-md after:transition-all sm:mr-5 xl:mr-[20px] relative group">Publicar Propiedad</a>
+                                    <a href="/add" class="before:rounded-md before:block before:absolute before:left-auto before:right-0 before:inset-y-0 before:-z-[1] before:bg-secondary before:w-0 hover:before:w-full hover:before:left-0 hover:before:right-auto before:transition-all leading-none px-[20px] py-[15px] capitalize font-medium text-white hidden sm:block text-[14px] xl:text-[16px] relative after:block after:absolute after:inset-0 after:-z-[2] after:bg-primary after:rounded-md after:transition-all sm:mr-5 xl:mr-[20px] relative group">Publicar Propiedad</a>
 
-                                    <ul class="list-none bg-white drop-shadow-[0px_6px_10px_rgba(0,0,0,0.2)] rounded-[12px] flex flex-wrap flex-col w-[180px] absolute top-[120%] sm:left-1/2 sm:-translate-x-1/2 transition-all group-hover:top-[60px] invisible group-hover:visible opacity-0 group-hover:opacity-100 right-0">
+                                    <!-- <ul class="list-none bg-white drop-shadow-[0px_6px_10px_rgba(0,0,0,0.2)] rounded-[12px] flex flex-wrap flex-col w-[180px] absolute top-[120%] sm:left-1/2 sm:-translate-x-1/2 transition-all group-hover:top-[60px] invisible group-hover:visible opacity-0 group-hover:opacity-100 right-0">
                                         <li class="border-b border-dashed border-primary border-opacity-40 last:border-b-0 hover:border-solid transition-all">
                                             <a href="#" class="font-lora leading-[1.571] text-[14px] text-primary p-[10px] capitalize block transition-all hover:bg-primary hover:text-white text-center my-[-1px] rounded-t-[12px]">Inmobiliaria</a>
                                         </li>
@@ -88,7 +85,7 @@
                                         <li class="border-b border-dashed border-primary border-opacity-40 last:border-b-0 hover:border-solid transition-all">
                                             <a href="#" class="font-lora leading-[1.571] text-[14px] text-primary p-[10px] capitalize block transition-all hover:bg-primary hover:text-white text-center my-[-1px] rounded-b-[12px]">Dueño Vende/Alquila</a>
                                         </li>
-                                    </ul>
+                                    </ul> -->
                                 </div>
                                 <la class="ml-2 sm:ml-5 lg:hidden">
                                     <a href="#offcanvas-mobile-menu" class="offcanvas-toggle flex text-[#016450] hover:text-secondary">
@@ -243,10 +240,10 @@
                     
                     
                     <b class="relative group">
-                        <a href="#" class="before:rounded-md before:block before:absolute before:left-auto before:right-0 before:inset-y-0 before:-z-[1] before:bg-secondary before:w-0 hover:before:w-full hover:before:left-0 hover:before:right-auto before:transition-all leading-none px-[10px] py-[15px] capitalize font-medium text-white text-[14px] xl:text-[16px] relative after:block after:absolute after:inset-0 after:-z-[2] after:bg-primary after:rounded-md after:transition-all">Publicar Propiedad</a>
+                        <a href="/add" class="before:rounded-md before:block before:absolute before:left-auto before:right-0 before:inset-y-0 before:-z-[1] before:bg-secondary before:w-0 hover:before:w-full hover:before:left-0 hover:before:right-auto before:transition-all leading-none px-[10px] py-[15px] capitalize font-medium text-white text-[14px] xl:text-[16px] relative after:block after:absolute after:inset-0 after:-z-[2] after:bg-primary after:rounded-md after:transition-all">Publicar Propiedad</a>
 
 
-                        <ul class="list-none bg-white drop-shadow-[0px_6px_10px_rgba(0,0,0,0.2)] rounded-[12px] flex flex-wrap flex-col w-[180px] absolute top-[120%] sm:left-1/2 sm:-translate-x-1/2 transition-all group-hover:top-[60px] invisible group-hover:visible opacity-0 group-hover:opacity-100 right-0">
+                        <!-- <ul class="list-none bg-white drop-shadow-[0px_6px_10px_rgba(0,0,0,0.2)] rounded-[12px] flex flex-wrap flex-col w-[180px] absolute top-[120%] sm:left-1/2 sm:-translate-x-1/2 transition-all group-hover:top-[60px] invisible group-hover:visible opacity-0 group-hover:opacity-100 right-0">
                             <li class="border-b border-dashed border-primary border-opacity-40 last:border-b-0 hover:border-solid transition-all">
                                 <a href="#" class="font-lora leading-[1.571] text-[14px] text-primary p-[10px] capitalize block transition-all hover:bg-primary hover:text-white text-center my-[-1px] rounded-t-[12px]">Inmobiliaria</a>
                             </li>
@@ -255,7 +252,7 @@
                                 <a href="#" class="font-lora leading-[1.571] text-[14px] text-primary p-[10px] capitalize block transition-all hover:bg-primary hover:text-white text-center my-[-1px] rounded-b-[12px]">Dueño Vende/Alquila</a>
                             </li>
 
-                        </ul>
+                        </ul> -->
                     </b>
                 </div>
             </div>
@@ -307,7 +304,7 @@
                                data: {"token":data[0].token}, 
                                success: function(data2){
                                    console.log(data2)
-                                   $("#perfil").text("Bienvenido "+ data2.Usrname)
+                                   $("#perfil").text("Hola, "+ data2.Usrname)
                                   
                                }
                            })
@@ -317,6 +314,7 @@
                        } else if(data[0].status == 0){
         
                            $("#msgemail").show();
+                           localStorage.removeItem("token")
         
                        } 
                    }});
@@ -349,13 +347,14 @@
                                data: {"token":data[0].token}, 
                                success: function(data2){
                                    console.log(data2)
-                                   $("#perfil").text("Bienvenido "+ data2.Usrname)
+                                   $("#perfil").text("Hola, "+ data2.Usrname)
                                   
                                }
                            })
 
                        } else {
                         $("#msgusr").show();
+                        localStorage.removeItem("token")
                        }
                    }});
                 } else{
@@ -374,9 +373,11 @@
                         
                            if (data2 != "no logeado") {
                             console.log(data2.Usrname)
-                            $("#perfil").text("Bienvenido "+ data2.Usrname)
+                            $("#perfil").text("Hola, "+ data2.Usrname)
                              $("#perfil,#close-mb").show();
                              $("#ex1,#inicio-mb,#ingresar,#p-nologin").hide();
+                           } else{
+                            localStorage.removeItem("token")
                            }
 
                        }
