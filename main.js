@@ -599,6 +599,22 @@ app.post("/editarperfil",function(req,res){
 	}
 })
 
+app.get("/delete/propiedad", function (req, res) {
+	var id = req.body.id
+	if (sessionLog["id" + token] != null) {
+		con.query("DELETE FROM propiedad WHERE id_propiedad = ?", [id], function (err, result) {
+			if (err != null) {
+				console.log("error", err)
+				res.send({ "status": 0, "mensaje": err })
+			} else {
+				console.log("Se Elimino el registro")
+				res.send({ "status": 200 })
+			}
+		}
+		);
+	}
+})
+
 app.get("/add", function (req, res) {
 	res.render(__dirname + "/html/views/add");
 });
