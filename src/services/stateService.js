@@ -43,10 +43,11 @@ service.select = function () {
 service.update = function () {
     return new Promise(resolve => {
         dbConnection.query("UPDATE table_name SET column1 = value1, column2 = value2, ... WHERE condition", (error, result, fields) => {
-            try {
-                return result
-            } catch (error) {
-                throw error
+            if (error) {
+                resolve(0)
+                console.log(error)
+            } else {
+                resolve(result)
             }
         });
     })
@@ -54,10 +55,11 @@ service.update = function () {
 service.delete = function () {
     return new Promise(resolve => {
         dbConnection.query("DELETE FROM table_name WHERE condition", (error, result, fields) => {
-            try {
-                return result
-            } catch (error) {
-                throw error
+            if (error) {
+                resolve(0)
+                console.log(error)
+            } else {
+                resolve(result)
             }
         });
     })
