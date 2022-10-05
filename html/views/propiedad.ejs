@@ -1,0 +1,305 @@
+<%- include ("elements/header") %>
+
+    <section class="popular-properties py-[80px] pt-[80px] lg:py-[120px]">
+        <div class="container">
+            <div class="grid grid-cols-12 mb-[-30px] gap-[30px] xl:gap-[50px]">
+                <div class="col-span-12 md:col-span-6 lg:col-span-8 mb-[30px]">
+                    <div id="imgpro">
+                        
+                    </div>
+                    
+                    <div class="mt-[45px] mb-[35px]">
+                        <h2 class="font-lora leading-tight text-[22px] md:text-[28px] lg:text-[36px] text-primary mb-[5px] font-medium">
+                            <%= propiedad.nombre %></h2>
+                        <h3 class="font-light text-[18px] text-secondary underline mb-[20px]"> <%= propiedad.direccion %></h3>
+                        <p> <%= propiedad.descripcion %></p>
+                    </div>
+                    <h4 class="font-lora text-primary text-[24px] leading-[1.277] sm:text-[28px] capitalize mt-[50px] mb-[40px] font-medium">Detalles de la propiedad<span class="text-secondary">.</span>
+                    </h4>
+                    <div class="jsx-952467510 technical-sheet">
+                        <div class="ant-row ant-row-space-between" style="margin-left:-6px;margin-right:-6px">
+                            <div style="padding-left:6px;padding-right:6px" class="ant-col">
+                                <div class="ant-space ant-space-horizontal ant-space-align-center">
+                                    <div class="ant-space-item" style="margin-right:4px">
+                                        <span class="ant-typography ant-typography-secondary small">•<!-- --> </span>
+                                    </div>
+                                    <div class="ant-space-item">
+                                        <span class="ant-typography">superficieM2</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding-left:6px;padding-right:6px;flex:1 1 auto" class="ant-col dots"></div>
+                            <div style="padding-left:6px;padding-right:6px" class="ant-col">
+                                <div class="ant-typography ant-typography-ellipsis ant-typography-ellipsis-multiple-line" style="margin: 0px; -webkit-line-clamp: 2;" title="TBE59E">
+                                    <strong> <%= propiedad.superficieM2 %></strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ant-row ant-row-space-between" style="margin-left:-6px;margin-right:-6px">
+                            <div style="padding-left:6px;padding-right:6px" class="ant-col">
+                                <div class="ant-space ant-space-horizontal ant-space-align-center">
+                                    <div class="ant-space-item" style="margin-right:4px"><span class="ant-typography ant-typography-secondary small">•<!-- --> </span></div>
+                                    <div class="ant-space-item"><span class="ant-typography">Tipo de Propiedad</span></div>
+                                </div>
+                            </div>
+                            <div style="padding-left:6px;padding-right:6px;flex:1 1 auto" class="ant-col dots"></div>
+                            <div style="padding-left:6px;padding-right:6px" class="ant-col">
+                                <div class="ant-typography ant-typography-ellipsis ant-typography-ellipsis-multiple-line" style="margin: 0px; -webkit-line-clamp: 2;" title="Casa"><strong>
+                                     <%= propiedad.descr %></strong></div>
+                            </div>
+                        </div>
+                        <div class="ant-row ant-row-space-between" style="margin-left:-6px;margin-right:-6px">
+                            <div style="padding-left:6px;padding-right:6px" class="ant-col">
+                                <div class="ant-space ant-space-horizontal ant-space-align-center">
+                                    <div class="ant-space-item" style="margin-right:4px"><span class="ant-typography ant-typography-secondary small">•<!-- --> </span></div>
+                                    <div class="ant-space-item"><span class="ant-typography">Zona</span></div>
+                                </div>
+                            </div>
+                            <div style="padding-left:6px;padding-right:6px;flex:1 1 auto" class="ant-col dots"></div>
+                            <div style="padding-left:6px;padding-right:6px" class="ant-col">
+                                <div class="ant-typography ant-typography-ellipsis ant-typography-ellipsis-multiple-line" style="margin: 0px; -webkit-line-clamp: 2;" title="Lambaré"><strong> <%= propiedad.departamento %></strong></div>
+                            </div>
+                        </div>
+                        <div class="ant-row ant-row-space-between" style="margin-left:-6px;margin-right:-6px">
+                            <div style="padding-left:6px;padding-right:6px" class="ant-col">
+                                <div class="ant-space ant-space-horizontal ant-space-align-center">
+                                    <div class="ant-space-item" style="margin-right:4px"><span class="ant-typography ant-typography-secondary small">•<!-- --> </span></div>
+                                    <div class="ant-space-item"><span class="ant-typography">Habitaciones</span></div>
+                                </div>
+                            </div>
+                            <div style="padding-left:6px;padding-right:6px;flex:1 1 auto" class="ant-col dots"></div>
+                            <div style="padding-left:6px;padding-right:6px" class="ant-col">
+                                <div class="ant-typography ant-typography-ellipsis ant-typography-ellipsis-multiple-line" style="margin: 0px; -webkit-line-clamp: 2;" title="Excelente estado"><strong> <%= propiedad.nrohabitaciones %></strong></div>
+                            </div>
+                        </div>
+                        <div class="ant-row ant-row-space-between" style="margin-left:-6px;margin-right:-6px">
+                            <div style="padding-left:6px;padding-right:6px" class="ant-col">
+                                <div class="ant-space ant-space-horizontal ant-space-align-center">
+                                    <div class="ant-space-item" style="margin-right:4px"><span class="ant-typography ant-typography-secondary small">•<!-- --> </span></div>
+                                    <div class="ant-space-item"><span class="ant-typography">Ciudad</span></div>
+                                </div>
+                            </div>
+                            <div style="padding-left:6px;padding-right:6px;flex:1 1 auto" class="ant-col dots"></div>
+                            <div style="padding-left:6px;padding-right:6px" class="ant-col">
+                                <div class="ant-typography ant-typography-ellipsis ant-typography-ellipsis-multiple-line" style="margin: 0px; -webkit-line-clamp: 2;" title="No aplica"><strong> <%= propiedad.ciudad %></strong></div>
+                            </div>
+                        </div>
+                        <div class="ant-row ant-row-space-between" style="margin-left:-6px;margin-right:-6px">
+                            <div style="padding-left:6px;padding-right:6px" class="ant-col">
+                                <div class="ant-space ant-space-horizontal ant-space-align-center">
+                                    <div class="ant-space-item" style="margin-right:4px"><span class="ant-typography ant-typography-secondary small">•<!-- --> </span></div>
+                                    <div class="ant-space-item"><span class="ant-typography">Baños</span></div>
+                                </div>
+                            </div>
+                            <div style="padding-left:6px;padding-right:6px;flex:1 1 auto" class="ant-col dots"></div>
+                            <div style="padding-left:6px;padding-right:6px" class="ant-col">
+                                <div class="ant-typography ant-typography-ellipsis ant-typography-ellipsis-multiple-line" style="margin: 0px; -webkit-line-clamp: 2;" title="3"><strong> <%= propiedad.nrobaños %></strong></div>
+                            </div>
+                        </div>
+                        <div class="ant-row ant-row-space-between" style="margin-left:-6px;margin-right:-6px">
+                            <div style="padding-left:6px;padding-right:6px" class="ant-col">
+                                <div class="ant-space ant-space-horizontal ant-space-align-center">
+                                    <div class="ant-space-item" style="margin-right:4px"><span class="ant-typography ant-typography-secondary small">•<!-- --> </span></div>
+                                    <div class="ant-space-item"><span class="ant-typography">nro garage</span></div>
+                                </div>
+                            </div>
+                            <div style="padding-left:6px;padding-right:6px;flex:1 1 auto" class="ant-col dots"></div>
+                            <div style="padding-left:6px;padding-right:6px" class="ant-col">
+                                <div class="ant-typography ant-typography-ellipsis ant-typography-ellipsis-multiple-line" style="margin: 0px; -webkit-line-clamp: 2;" title="310 m2"><strong> <%= propiedad.nrogarage %></strong></div>
+                            </div>
+                        </div>
+                        
+                        </div>
+                    <div class="col-span-12 lg:col-span-5 mb-[30px] order-last lg:order-none">
+                        <div class="h-[385px] rounded-[6px] overflow-hidden mt-[50px]">
+                            <iframe class="w-full h-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4814229.011985735!2d-65.89121968758322!3d-7.7486900084225026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91e8605342744385%3A0x3d3c6dc1394a7fc7!2sAmazon%20Rainforest!5e0!3m2!1sen!2sbd!4v1644813708270!5m2!1sen!2sbd" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                    <h4 class="font-lora text-primary text-[24px] leading-[1.277] sm:text-[28px] capitalize mt-[50px] mb-[40px] font-medium">Comodidades de la propiedad<span class="text-secondary">.</span>
+                    </h4>
+
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 px-[15px] mx-[-15px] mt-[40px]">
+                        <li class="flex flex-wrap items-center mb-[25px]">
+                            <img class="mr-[15px]" src="assets/images/about/check.png" loading="lazy" alt="icon" width="20" height="20">
+                            <span>7 Beedrooms</span>
+                        </li>
+                        <li class="flex flex-wrap items-center mb-[25px]">
+                            <img class="mr-[15px]" src="assets/images/about/check.png" loading="lazy" alt="icon" width="20" height="20">
+                            <span>Gym for all</span>
+                        </li>
+                        <li class="flex flex-wrap items-center mb-[25px]">
+                            <img class="mr-[15px]" src="assets/images/about/check.png" loading="lazy" alt="icon" width="20" height="20">
+                            <span>Air Conditioning</span>
+                        </li>
+                        <li class="flex flex-wrap items-center mb-[25px]">
+                            <img class="mr-[15px]" src="assets/images/about/check.png" loading="lazy" alt="icon" width="20" height="20">
+                            <span>CC Camera</span>
+                        </li>
+                        <li class="flex flex-wrap items-center mb-[25px]">
+                            <img class="mr-[15px]" src="assets/images/about/check.png" loading="lazy" alt="icon" width="20" height="20">
+                            <span>3 Garaze</span>
+                        </li>
+                        <li class="flex flex-wrap items-center mb-[25px]">
+                            <img class="mr-[15px]" src="assets/images/about/check.png" loading="lazy" alt="icon" width="20" height="20">
+                            <span>Cable TV</span>
+                        </li>
+                        <li class="flex flex-wrap items-center mb-[25px]">
+                            <img class="mr-[15px]" src="assets/images/about/check.png" loading="lazy" alt="icon" width="20" height="20">
+                            <span>10 Nearby Restaurant</span>
+                        </li>
+                        <li class="flex flex-wrap items-center mb-[25px]">
+                            <img class="mr-[15px]" src="assets/images/about/check.png" loading="lazy" alt="icon" width="20" height="20">
+                            <span>Internet</span>
+                        </li>
+                        <li class="flex flex-wrap items-center mb-[25px]">
+                            <img class="mr-[15px]" src="assets/images/about/check.png" loading="lazy" alt="icon" width="20" height="20">
+                            <span>Security System</span>
+                        </li>
+                        <li class="flex flex-wrap items-center mb-[25px]">
+                            <img class="mr-[15px]" src="assets/images/about/check.png" loading="lazy" alt="icon" width="20" height="20">
+                            <span>10 Nearby Restaurant</span>
+                        </li>
+
+                        <li class="flex flex-wrap items-center mb-[25px]">
+                            <img class="mr-[15px]" src="assets/images/about/check.png" loading="lazy" alt="icon" width="20" height="20">
+                            <span>6 Nearby Schools</span>
+                        </li>
+                        <li class="flex flex-wrap items-center mb-[25px]">
+                            <img class="mr-[15px]" src="assets/images/about/check.png" loading="lazy" alt="icon" width="20" height="20">
+                            <span>Gym for all</span>
+                        </li>
+                        <li class="flex flex-wrap items-center mb-[25px]">
+                            <img class="mr-[15px]" src="assets/images/about/check.png" loading="lazy" alt="icon" width="20" height="20">
+                            <span>Dishwasher</span>
+                        </li>
+                        <li class="flex flex-wrap items-center mb-[25px]">
+                            <img class="mr-[15px]" src="assets/images/about/check.png" loading="lazy" alt="icon" width="20" height="20">
+                            <span>5 Balcony</span>
+                        </li>
+                        <li class="flex flex-wrap items-center mb-[25px]">
+                            <img class="mr-[15px]" src="assets/images/about/check.png" loading="lazy" alt="icon" width="20" height="20">
+                            <span>Swimming Pool</span>
+                        </li>
+                    </ul>
+                    
+                </div>
+
+                <div class="col-span-12 md:col-span-6 lg:col-span-4 mb-[30px]">
+                    <div class="sticky">
+                        <div class="grid grid-cols-12 gap-x-[20px] gap-y-[30px]">
+                            <div class="col-span-12 md:col-span-6">
+                                <input class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text" placeholder="First Name" name="name">
+                            </div>
+
+                            <div class="col-span-12 md:col-span-6">
+                                <input class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text" placeholder="Last Name" name="name">
+                            </div>
+
+                            <div class="col-span-12 md:col-span-6">
+                                <input class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text" placeholder="Phone number" name="number">
+                            </div>
+
+                            <div class="col-span-12 md:col-span-6">
+                                <input class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="email" placeholder="Email Address" name="email">
+                            </div>
+
+                            <div class="col-span-12">
+                                <textarea class="h-[196px] font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] resize-none" name="message" id="textarea" cols="30" rows="10" placeholder="Message"></textarea>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <footer class=" pt-[80px] lg:pt-[120px] pb-30 md:pb-[80px] lg:pb-[110px] font-normal bg-no-repeat"></footer>
+	<!-- Footer End -->
+	<a id="scrollUp"
+		class="w-12 h-12 rounded-full bg-primary text-white fixed right-5 bottom-16 flex flex-wrap items-center justify-center transition-all duration-300 z-10"
+		href="#" aria-label="scroll up">
+
+		<svg width="25" height="25" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+			<path
+				d="M6.101 261.899L25.9 281.698c4.686 4.686 12.284 4.686 16.971 0L198 126.568V468c0 6.627 5.373 12 12 12h28c6.627 0 12-5.373 12-12V126.568l155.13 155.13c4.686 4.686 12.284 4.686 16.971 0l19.799-19.799c4.686-4.686 4.686-12.284 0-16.971L232.485 35.515c-4.686-4.686-12.284-4.686-16.971 0L6.101 244.929c-4.687 4.686-4.687 12.284 0 16.97z" />
+		</svg>
+
+	</a>
+	</div>
+
+
+	<!-- JS Vendor, Plugins & Activation Script Files -->
+
+	<!-- Vendors JS -->
+	<script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
+	<script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
+	<script src="assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+	<!-- Plugins JS -->
+	<script src="assets/js/plugins/swiper-bundle.min.js"></script>
+	<script src="assets/js/plugins/popper.min.js"></script>
+	<script src="assets/js/plugins/jquery.magnific-popup.min.js"></script>
+	<script src="assets/js/plugins/jquery.ajaxchimp.min.js"></script>
+	<script src="assets/js/plugins/parallax.min.js"></script>
+	<script src="assets/js/plugins/jquery.waypoints.js"></script>
+	<script src="assets/js/plugins/jquery.counterup.min.js"></script>
+	<script src="assets/js/plugins/jquery.nice-select.min.js"></script>
+	<script src="assets/js/uploadfile.js"></script>
+
+	<!-- Activation JS -->
+	<script src="assets/js/main.js"></script>
+    <style type="text/css">
+        .technical-sheet {
+        column-gap: 24px;
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+    }
+    .technical-sheet .ant-row {
+        align-items: baseline;
+        flex-wrap: nowrap;
+        margin: 0 0 16px;
+        display: flex;
+    }
+    .ant-col {
+        max-width: 100%;
+        min-height: 1px;
+        position: relative;
+    }
+    .ant-space {
+        display: inline-flex;
+    }
+    .sticky {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 100px;
+    }
+    </style>
+    <script>
+        $(document).ready(function(){
+         $.ajax({
+            url: "imgpropiedad?id=<%= propiedad.id_propiedad %>",
+            method: "GET",
+            success: function (data){
+                console.log("img pro",data)
+                data.data.forEach(element => {
+                    console.log("el elemto",element)
+                    var newimg = document.createElement("img")
+                    newimg.setAttribute("width","770")
+                    newimg.setAttribute("height","465")
+                    newimg.setAttribute("src",element.ruta)
+                    newimg.setAttribute("class","w-auto h-auto")
+                    document.getElementById("imgpro").append(newimg)
+                });
+            }
+        })
+      
+        })
+        let parent = document.querySelector('.sticky').parentElement;
+
+            while (parent) {
+                const hasOverflow = getComputedStyle(parent).overflow;
+                if (hasOverflow !== 'visible') {
+                    console.log(hasOverflow, parent);
+                }
+                parent = parent.parentElement;
+            }
+    </script>
